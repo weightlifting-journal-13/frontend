@@ -8,6 +8,7 @@ import MyPlans from './components/MyPlans';
 import PresetPlans from './components/PresetPlans';
 
 import './App.css';
+import Profiles from './components/Profiles';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
       <Route 
         exact path='/PresetPlans'
         render={props => <PresetPlans {...props} />} />
+      <Route 
+        exact path='/Profiles'
+        render={props => <Profiles {...props} />} />
     </div>
   );
 }
