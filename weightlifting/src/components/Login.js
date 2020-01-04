@@ -11,6 +11,7 @@ const Login = (props) => {
         username: '',
         password: '',
     })
+    const [isLoading, setIsLoading] = useState(false)
 
     //handleInputChanges
     const handleInputChanges = (e) => {
@@ -28,6 +29,7 @@ const Login = (props) => {
     //successful post --> props.history.push('/Dashboard')
     const handleLoginSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         //axiosWithAuth to login
         axiosWithAuth()
@@ -41,6 +43,8 @@ const Login = (props) => {
                     username: '',
                     password: ''
                 })
+
+                setIsLoading(false);
 
                 //automatically redirect from Login to --> Dashboard
                 props.history.push('/Dashboard')
@@ -68,7 +72,10 @@ const Login = (props) => {
                     value={credentials.password}
                     onChange={handleInputChanges}
                 />
-                <button type='submit'>Login</button>
+                <button type='submit'>
+                    {/* Login */}
+                    {isLoading ? 'Logging in...' : 'Log in'}
+                </button>
             </form>
         </div>
     );

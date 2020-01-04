@@ -6,13 +6,16 @@ import PrivateRoute from './components/PrivateRoute';
 import CreatePlan from './components/CreatePlan';
 import MyPlans from './components/MyPlans';
 import PresetPlans from './components/PresetPlans';
-
-import './App.css';
 import Profiles from './components/Profiles';
+import Registration from './components/Registration';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Route 
+        exact path='/Registration'
+        render={props => <Registration {...props} /> } />
       <Route 
         exact path='/' 
         render={props => <Login {...props} />} />
