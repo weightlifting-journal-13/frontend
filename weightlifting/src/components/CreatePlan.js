@@ -8,7 +8,7 @@ const CreatePlan = () => {
 
     //set up useEffect --> watch two things: 1. bodpyarts, 2. exercises
 
-    workoutPlan.filter(plan => console.log(plan))
+    // workoutPlan.filter(plan => console.log(plan))
 
    //NATE:
 /**
@@ -62,34 +62,86 @@ const CreatePlan = () => {
                 //onChange={}
                 />
                 <h3>Select your body part</h3>
-                    <option>Chest</option>
-                    <option>Shoulders</option>
-                    <option>Back</option>
-                    <option>Triceps</option>
-                    <option>Biceps</option>
-                    <option>Abs/Core</option>
-                    <option>Cardio</option>
-                    <option>Curcuits</option>
-                    <option>Functional training</option>
-                    <option>Stretching</option>
-                    <option>Bodyweight</option>
-                <h4>Select your exercises(dynamically create)</h4>
-                {/* <select>{exerciseList}</select> */}
+                    <label>Chest</label>
+                    <input 
+                        type='checkbox'
+                        name='chest'
+                        //value={}
+                    />
+                    <label>Legs</label>
+                    <input 
+                        type='checkbox'
+                        name='legs'
+                        //value={}
+                    />
+                    <label>Shoulders</label>
+                    <input 
+                        type='checkbox'
+                        name='shoulders'
+                        //value={}
+                    />
+                    <label>Back</label>
+                    <input 
+                        type='checkbox'
+                        name='back'
+                        //value={}
+                    />
+                    <label>Triceps</label>
+                    <input 
+                        type='checkbox'
+                        name='triceps'
+                        //value={}
+                    />
+                    <label>Biceps</label>
+                    <input 
+                        type='checkbox'
+                        name='biceps'
+                        //value={}
+                    />
+                    <label>Abs/Core</label>
+                    <input 
+                        type='checkbox'
+                        name='core'
+                        //value={}
+                    />
+                    <label>Cardio</label>
+                    <input 
+                        type='checkbox'
+                        name='cardio'
+                        //value={}
+                    />
+                    <label>Circuit</label>
+                    <input 
+                        type='checkbox'
+                        name='circuits'
+                        //value={}
+                    />
+                    <label>Functional Training</label>
+                    <input 
+                        type='checkbox'
+                        name='training'
+                        //value={}
+                    />
+                    <label>Stretching</label>
+                    <input 
+                        type='checkbox'
+                        name='stretching'
+                        //value={}
+                    />
+                    <label>Bodyweight</label>
+                    <input 
+                        type='checkbox'
+                        name='bodyweight'
+                        //value={}
+                    />
+                <h4>Select your exercises(from data file)</h4>
                 <h3>Fill out exercises reps</h3>
-                <input 
-                    type='text'
-                    name='exercise'
-                    placeholder='Exercise'
-                    //value={}
-                    //onChange={}
-                />
-                <button type='submit'>+ Exercise</button>
-                <h3>Create your plan(exercises add here to array --> create plan</h3>
+    
                 <label>Exercise</label>
                 <input 
                     type='text'
                     name='exercise'
-                    placeholder='Excercise'
+                    placeholder='Bench press(autopopulate)'
                 />
                 <label>Number of sets</label>
                 <input 
