@@ -8,6 +8,8 @@ const Registration = (props) => {
         password: '',
     })
 
+    const [isLoading, setIsLoading] = useState(false)
+
     //handleInputChanges
     const handleInputChanges = (e) => {
         setRegistrationCredentials({
@@ -20,6 +22,7 @@ const Registration = (props) => {
     //handleOnSubmitRegistration
     const handleOnSubmitRegistration = (e) => {
         e.preventDefault();
+        setIsLoading(true)
 
         axiosWithAuth()
             .post('/auth/register', registrationCredentials)
@@ -32,10 +35,13 @@ const Registration = (props) => {
                     password: ''
                 })
                 
+                setIsLoading(false)
+
                 props.history.push('/Login')
             })
             .catch(error => {
                 console.log('Sorry, registration not complete. Please try again.', error)
+                setIsLoading(false)
             })
 
     }
@@ -61,7 +67,9 @@ const Registration = (props) => {
                     onChange={handleInputChanges}
                     required
                 />
-                <button type='submit'>Sign up</button>
+                <button type='submit'>
+                    {isLoading ? 'Signing in...' : 'Sign up'}
+                </button>
             </form>
         </div>
      );

@@ -51,6 +51,7 @@ const Login = (props) => {
             })
             .catch(error => {
                 console.log('Sorry, login credentials not valid.', error)
+                setIsLoading(false)
             })
     }
 
