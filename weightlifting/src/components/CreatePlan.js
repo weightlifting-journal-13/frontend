@@ -1,58 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {data} from '../data';
 
 const CreatePlan = () => {
-    //setup useState to create data for select options
-    //need to dynamically map over bodyparts to create 'option' exercises associated with that specific body party
-    // const data = [
-    //     {
-    //         bodypart: 'chest',
-    //         exercises: ['flat bench press', 'incline bench press', 'decline bench press', 'push ups', 'flat dumbell press', 'incline dumbell press', 'dips', 'cable crossovers']
-    //     },
-    //     {
-    //         bodypart: 'legs',
-    //         exercises: ['squats', 'lunges', 'deadlifts', 'leg curls', 'hamstring curls', 'sumo squat', 'calf raises']
-    //     },
-    //     {
-    //         bodypart: 'shoulders',
-    //         exercises: ['seated press', 'upright rows', 'cable raises', 'side raises', 'kettle bell swings']
-    //     }
-    // ]
-
-    const [workoutPlan, setWorkoutPlan] = useState(data)
+     const [workoutPlan, setWorkoutPlan] = useState(data)
     // 0) Prereq. Given the "bodypart", such as "chest"
     // const bodypart = "legs"; // from set state of the <select />
 
-    // 1) Get the appropriate exercise group
-    // Given: bodypart==="chest"
-    // Want: { bodypart: "chest", exercises: ["flat bench",...]}
-    // const exerciseGroup = data.find(item => item.bodypart)
+    //set up useEffect --> watch two things: 1. bodpyarts, 2. exercises
 
-    // Array methods
-    // find
-    // map
-    // filter
-    // forEach
     workoutPlan.filter(plan => console.log(plan))
 
-    // 2) Get list of exercises from exercise group
+   //NATE:
+/**
+ * data  -state (check)
+ * map through and create a list that has check box that has a helper function that changes your state.
+ * 
+ *     {
+            bodypart: 'chest',
+            exercises: ['flat bench press', 'incline bench press', 'decline bench press', 'push ups', 'flat dumbell press', 'incline dumbell press', 'dips', 'cable crossovers']
+         },
 
-    // 3) Create React components from list of exercises
+        usestate = {
+             chest:{
+                 isSelected:false,
+                 exercises:{
+                     flat_Bench_Press:{
+                         isSelected:false,
+                         exercisename: "Flat Bench Press"
+                     }
+                 }
+             }
+         }
+ * 
 
-
-
-    // const doubleMap = data[0].exercises.map(item => (
-    //     data.exercises.map(element => element.exercises)
-    // ))
-
-
-
-//    const exerciseList = data.exercises.map((item, index) => {
-//         return (
-//             <option key={index}>{item.exercises}</option>
-//         )
-//     })
-
+ handleInputBodyPart --> 
+ setWorkoutPlan({
+    state[e.target.name]= {
+        ...state[e.target.name]
+        isClicked:!state[e.target.name]
+    }
+ })
+  
+ */
     return (
         <div>
             <h1>Create new plan component</h1>
@@ -73,8 +62,6 @@ const CreatePlan = () => {
                 //onChange={}
                 />
                 <h3>Select your body part</h3>
-                <select>
-                    <option>Select your body part</option>
                     <option>Chest</option>
                     <option>Shoulders</option>
                     <option>Back</option>
@@ -86,7 +73,6 @@ const CreatePlan = () => {
                     <option>Functional training</option>
                     <option>Stretching</option>
                     <option>Bodyweight</option>
-                </select>
                 <h4>Select your exercises(dynamically create)</h4>
                 {/* <select>{exerciseList}</select> */}
                 <h3>Fill out exercises reps</h3>

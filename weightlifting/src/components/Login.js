@@ -14,6 +14,8 @@ const Login = (props) => {
 
     //handleInputChanges
     const handleInputChanges = (e) => {
+        e.persist();
+        console.log(e)
         setCredentials({
             ...credentials,
             [e.target.name]: e.target.value
