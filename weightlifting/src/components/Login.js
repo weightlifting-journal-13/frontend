@@ -32,7 +32,7 @@ const Login = (props) => {
             .post('/auth/login', credentials)
             .then(response => {
                 console.log(response)
-                localStorage.setItem('token', response)
+                localStorage.setItem('token', response.data.token)
 
                 //reset values back to empty strings
                 setCredentials({
