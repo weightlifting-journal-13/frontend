@@ -4,7 +4,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 const Registration = (props) => {
 
     const [registrationCredentials, setRegistrationCredentials] = useState({
-        email: '',
+        username: '',
         password: '',
     })
 
@@ -28,16 +28,16 @@ const Registration = (props) => {
             .post('/auth/register', registrationCredentials)
             .then(response => {
                 console.log(response)
-                // setRegistrationCredentials(response)
+                
 
                 setRegistrationCredentials({
-                    email: '',
+                    username: '',
                     password: ''
                 })
                 
                 setIsLoading(false)
 
-                props.history.push('/Login')
+                props.history.push('/')
             })
             .catch(error => {
                 console.log('Sorry, registration not complete. Please try again.', error)
@@ -53,9 +53,9 @@ const Registration = (props) => {
             <form onSubmit={handleOnSubmitRegistration} >
                 <input 
                     type='text'
-                    name='email'
-                    placeholder='Email'
-                    value={registrationCredentials.email}
+                    name='username'
+                    placeholder='username'
+                    value={registrationCredentials.username}
                     onChange={handleInputChanges}
                     required
                 />
