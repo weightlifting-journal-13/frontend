@@ -8,19 +8,17 @@ const CreatePlan = () => {
 
     //set up useEffect --> watch two things: 1. bodpyarts, 2. exercises
 
-    // workoutPlan.filter(plan => console.log(plan))
-
+    const result = Object.entries(workoutPlan)
+    const mappedWorkoutPlan = result.map(item => item)
+    console.log(mappedWorkoutPlan)
+    
    //NATE:
 /**
  * data  -state (check)
  * map through and create a list that has check box that has a helper function that changes your state.
  * 
- *     {
-            bodypart: 'chest',
-            exercises: ['flat bench press', 'incline bench press', 'decline bench press', 'push ups', 'flat dumbell press', 'incline dumbell press', 'dips', 'cable crossovers']
-         },
-
-        usestate = {
+ *     
+        data = {
              chest:{
                  isSelected:false,
                  exercises:{
