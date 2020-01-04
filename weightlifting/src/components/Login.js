@@ -10,7 +10,6 @@ const Login = (props) => {
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
-        id: Date.now()
     })
 
     //handleInputChanges
@@ -30,7 +29,7 @@ const Login = (props) => {
 
         //axiosWithAuth to login
         axiosWithAuth()
-            .post('/login', credentials)
+            .post('/auth/login', credentials)
             .then(response => {
                 console.log(response)
                 localStorage.setItem('token', response)

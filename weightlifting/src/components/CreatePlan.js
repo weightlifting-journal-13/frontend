@@ -1,35 +1,63 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {data} from '../data';
 
 const CreatePlan = () => {
     //setup useState to create data for select options
     //need to dynamically map over bodyparts to create 'option' exercises associated with that specific body party
-    const data = [
-        {
-            bodypart: 'chest',
-            exercises: ['flat bench press', 'incline bench press', 'decline bench press', 'push ups', 'flat dumbell press', 'incline dumbell press', 'dips', 'cable crossovers']
-        },
-        {
-            bodypart: 'legs',
-            exercises: ['squats', 'lunges', 'deadlifts', 'leg curls', 'hamstring curls', 'sumo squat', 'calf raises']
-        },
-        {
-            bodypart: 'shoulders',
-            exercises: ['seated press', 'upright rows', 'cable raises', 'side raises', 'kettle bell swings']
-        }
-    ]
+    // const data = [
+    //     {
+    //         bodypart: 'chest',
+    //         exercises: ['flat bench press', 'incline bench press', 'decline bench press', 'push ups', 'flat dumbell press', 'incline dumbell press', 'dips', 'cable crossovers']
+    //     },
+    //     {
+    //         bodypart: 'legs',
+    //         exercises: ['squats', 'lunges', 'deadlifts', 'leg curls', 'hamstring curls', 'sumo squat', 'calf raises']
+    //     },
+    //     {
+    //         bodypart: 'shoulders',
+    //         exercises: ['seated press', 'upright rows', 'cable raises', 'side raises', 'kettle bell swings']
+    //     }
+    // ]
 
-   
-    // const exerciseList = data.exercises.map((item, index) => {
-    //     return (
-    //         <option key={index}>{item.exercises}</option>
-    //     )
-    // })
+    const [workoutPlan, setWorkoutPlan] = useState(data)
+    // 0) Prereq. Given the "bodypart", such as "chest"
+    // const bodypart = "legs"; // from set state of the <select />
+
+    // 1) Get the appropriate exercise group
+    // Given: bodypart==="chest"
+    // Want: { bodypart: "chest", exercises: ["flat bench",...]}
+    // const exerciseGroup = data.find(item => item.bodypart)
+
+    // Array methods
+    // find
+    // map
+    // filter
+    // forEach
+    workoutPlan.filter(plan => console.log(plan))
+
+    // 2) Get list of exercises from exercise group
+
+    // 3) Create React components from list of exercises
+
+
+
+    // const doubleMap = data[0].exercises.map(item => (
+    //     data.exercises.map(element => element.exercises)
+    // ))
+
+
+
+//    const exerciseList = data.exercises.map((item, index) => {
+//         return (
+//             <option key={index}>{item.exercises}</option>
+//         )
+//     })
 
     return (
         <div>
             <h1>Create new plan component</h1>
             <form>
-                <h3>Create your workout plan</h3>
+                <h3>Name your workout plan</h3>
                 <input
                     type='text'
                     name='workoutname'
