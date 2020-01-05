@@ -6,12 +6,11 @@ const CreatePlan = () => {
     // 0) Prereq. Given the "bodypart", such as "chest"
     // const bodypart = "legs"; // from set state of the <select />
 
-    //set up useEffect --> watch two things: 1. bodpyarts, 2. exercises
 
     const result = Object.values(workoutPlan)
     console.log(result)
 
-       //NATE:
+    //NATE:
     /**
      * data  -state (check)
      * map through and create a list that has check box 
@@ -50,14 +49,22 @@ const CreatePlan = () => {
 
                 <h4>Select your exercises</h4>
                 
-                {result.map((item, index) => {
-                return (
-                    <>
-                    <input key={index} type='checkbox'/>
-                    <label>{item.bodypart}</label>
-                    </>
-                    )
-                })}
+                {
+                    result.map((item, index) => {
+                        return (
+                            <>
+                                <input key={index} type='checkbox' />
+                                <label>{item.bodypart}</label>
+                                <label>Exercise</label>
+                                <input
+                                    type='text'
+                                    name='exercise'
+                                    placeholder={item.bodypart}
+                                />
+                            </>
+                        )
+                    })
+                }
 
                 <h3>Fill out exercises reps</h3>
 
@@ -85,6 +92,7 @@ const CreatePlan = () => {
                     name='reps'
                     placeholder='weight'
                 />
+                <h4>Create your plan(final step)</h4>
                 <button>Create plan</button>
             </form>
         </div >
