@@ -10,10 +10,10 @@ const CreatePlan = (props) => {
         workoutplan: '',
         workoutdescription: '',
         exercise: '',
-        numberofsets: '0',
-        numberofreps: '0',
-        weightlifted: '0',
-        lengthofrest: '0'
+        numberofsets: 0,
+        numberofreps: 0,
+        weightlifted: 0,
+        lengthofrest: 0
     })
     useEffect(() => {
         console.log('running')
@@ -110,10 +110,10 @@ const CreatePlan = (props) => {
                     workoutplan: '',
                     workoutdescription: '',
                     exercise: '',
-                    numberofsets: '',
-                    numberofreps: '',
-                    weightlifted: '',
-                    lengthofrest: ''
+                    numberofsets: 0,
+                    numberofreps: 0,
+                    weightlifted: 0,
+                    lengthofrest: 0
                 })
 
                 //redirect to MyPlans component
@@ -168,53 +168,56 @@ const CreatePlan = (props) => {
                             id={index}
                             type='checkbox'
                             name={item.exercisename}
+                        // onChange={}
                         />
                         <label>{item.exercisename}</label>
+                        {item.isSelected ?
+                            (<div>
+                                <label>Exercise</label>
+                                <input
+                                    type='text'
+                                    name='exercise'
+                                    placeholder='Exercise'
+                                    value={formData.exercise}
+                                    onChange={handleInputChanges}
+                                />
+                                <label>Number of sets</label>
+                                <input
+                                    type='number'
+                                    name='numberofsets'
+                                    placeholder='0'
+                                    value={formData.numberofsets}
+                                    onChange={handleInputChanges}
+                                />
+                                <label>Number of reps</label>
+                                <input
+                                    type='number'
+                                    name='numberofreps'
+                                    placeholder='0'
+                                    value={formData.numberofreps}
+                                    onChange={handleInputChanges}
+                                />
+                                <label>lbs-optional</label>
+                                <input
+                                    type='number'
+                                    name='weightlifted'
+                                    placeholder='0'
+                                    value={formData.weightlifted}
+                                    onChange={handleInputChanges}
+                                />
+                                <label>Length of rest</label>
+                                <input
+                                    type='number'
+                                    name='lengthofrest'
+                                    placeholder='0 mins'
+                                    value={formData.lengthofrest}
+                                    onChange={handleInputChanges}
+                                />
+                            </div>) : (<p>Select your exercise...</p>)}
                     </div>
                 ))}
 
-                <h3>Fill out exercises reps</h3>
                 <div>
-                    <label>Exercise</label>
-                    <input
-                        type='text'
-                        name='exercise'
-                        placeholder='Exercise'
-                        value={formData.exercise}
-                        onChange={handleInputChanges}
-                    />
-                    <label>Number of sets</label>
-                    <input
-                        type='number'
-                        name='numberofsets'
-                        placeholder='0'
-                        value={formData.numberofsets}
-                        onChange={handleInputChanges}
-                    />
-                    <label>Number of reps</label>
-                    <input
-                        type='number'
-                        name='numberofreps'
-                        placeholder='0'
-                        value={formData.numberofreps}
-                        onChange={handleInputChanges}
-                    />
-                    <label>lbs-optional</label>
-                    <input
-                        type='number'
-                        name='weightlifted'
-                        placeholder='0'
-                        value={formData.weightlifted}
-                        onChange={handleInputChanges}
-                    />
-                    <label>Length of rest</label>
-                    <input
-                        type='number'
-                        name='lengthofrest'
-                        placeholder='0 mins'
-                        value={formData.lengthofrest}
-                        onChange={handleInputChanges}
-                    />
                     <h4>Create your plan(final step)</h4>
                     <button type='submit'>Create plan</button>
                 </div>
