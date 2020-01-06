@@ -15,6 +15,7 @@ const CreatePlan = (props) => {
         weightlifted: 0,
         lengthofrest: 0
     })
+
     useEffect(() => {
         console.log('running')
         if (data && (workoutPlan.length === 0)) {
@@ -39,7 +40,7 @@ const CreatePlan = (props) => {
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
-
+    console.log(formData, 'FormData Todd is here')
     //NATE:
     /*
      * 1. data  -state (check)
@@ -70,6 +71,10 @@ const CreatePlan = (props) => {
         })
         console.log(changedExerciseInput)
         setExercises(changedExerciseInput)
+        setFormData({
+            ...formData,
+            exercise: e.target.name
+        })
     }
 
     const selectregion = (e) => {
@@ -181,7 +186,7 @@ const CreatePlan = (props) => {
                                     type='text'
                                     name='exercise'
                                     placeholder='Exercise'
-                                    value={formData.exercise}
+                                    value={formData.exercisename}
                                     onChange={handleInputChanges}
                                 />
                                 <label>Number of sets</label>
@@ -216,7 +221,7 @@ const CreatePlan = (props) => {
                                     value={formData.lengthofrest}
                                     onChange={handleInputChanges}
                                 />
-                            </div>) : (<p>Select your exercise...</p>)}
+                            </div>) : (<p></p>)}
                     </div>
                 ))}
 
