@@ -3,7 +3,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { data } from '../data';
 
 const CreatePlan = (props) => {
-    const [workoutPlan, setWorkoutPlan] = useState(data)
+    const [workoutPlan, setWorkoutPlan] = useState(data ? Object.values(data) : [])
     const [formData, setFormData] = useState({
         workoutplan: '',
         workoutdescription: '',
@@ -11,17 +11,18 @@ const CreatePlan = (props) => {
         numberofsets: 0,
         numberofreps: 0,
         weightlifted: 0,
-        lengthofrest: 0,
+        lengthofrest: 0
     })
+    useEffect(() => {
+        if (data) setWorkoutPlan(Object.values(data));
 
+    }, [data])
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
 
     // watch for changes in 'workoutPlan' --> 1:bodypart, 2:exercises
-    useEffect(() => {
-        setWorkoutPlan(workoutPlan)
-    }, [formData, workoutPlan])
+
 
     //NATE:
     /*
@@ -52,7 +53,20 @@ const CreatePlan = (props) => {
     //            }
     //        })
     //  }  
-
+    const selectregion = (e) => {
+        e.persist();
+        console.log(e);
+         
+           let copy = workoutPlan[Number(e.target.id)]
+           copy = {
+            ...copy,
+            isSelected: !copy.isSelected
+            };
+            setWorkoutPlan(
+                workoutPlan.splice((e.target.id),1, copy)
+                ) 
+                console.log(workoutPlan, 'inside Bobb')       
+    }
 
     // 4. onSubmit form to post new workoutPlan to api
     const handleOnSubmitForm = (e) => {
@@ -70,7 +84,7 @@ const CreatePlan = (props) => {
                 //     workoutPlan(false)
                 //  )
 
-                /// set formData inputs back to empty strings
+                /// setformData inputs back to empty strings
                 setFormData({
                     workoutplan: '',
                     workoutdescription: '',
@@ -110,13 +124,15 @@ const CreatePlan = (props) => {
                     onChange={handleInputChanges}
                 />
                 <h4>Select your exercises</h4>
-                {result.map((item, index) => {
+                {workoutPlan.map((item, index) => {
                     return (
                         <div key={index}>
-                            <input 
-                                key={index} 
+                            <input
+                                key={index}
+                                id={index}
                                 type='checkbox'
-                                name={item.bodypart} 
+                                name={item.bodypart}
+                                onClick={selectregion}
                             />
                             <label>{item.bodypart}</label>
                         </div>
