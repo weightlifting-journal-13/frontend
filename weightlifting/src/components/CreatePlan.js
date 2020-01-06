@@ -4,6 +4,8 @@ import { data } from '../data';
 
 const CreatePlan = (props) => {
     const [workoutPlan, setWorkoutPlan] = useState(data ? Object.values(data) : [])
+    const [exercises, setExercises] = useState([]);
+    const [trigger, setTrigger] = useState(false)
     const [formData, setFormData] = useState({
         workoutplan: '',
         workoutdescription: '',
@@ -14,9 +16,21 @@ const CreatePlan = (props) => {
         lengthofrest: 0
     })
     useEffect(() => {
-        if (data) setWorkoutPlan(Object.values(data));
+        console.log('running')
+        if (data && (workoutPlan.length === 0)) {
+            setWorkoutPlan(Object.values(data));
+        } else {
+            const filtered = workoutPlan.filter(eachObj => eachObj.isSelected === true);
 
-    }, [data])
+            const exerciseArray = [];
+            for (let i = 0; i < filtered.length; i++) {
+                exerciseArray.push(Object.values(filtered[i].exercises))
+            }
+            setExercises(exerciseArray);
+            console.log(exerciseArray)
+        }
+    }, [data, workoutPlan, trigger])
+
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
@@ -65,6 +79,7 @@ const CreatePlan = (props) => {
         setWorkoutPlan(
             workoutPlan
         )
+        setTrigger(!trigger)
         console.log(workoutPlan, 'inside Bobb')
     }
 
@@ -139,6 +154,21 @@ const CreatePlan = (props) => {
                         </div>
                     )
                 })}
+                <div>
+                    {exercises.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <input
+                                    key={index}
+                                    id={index}
+                                    type='checkbox'
+                                    name={item.exercisename}
+                                />
+                                <label>{item.exercisename}</label>
+                            </div>
+                        )
+                    })}
+                </div>
                 <h3>Fill out exercises reps</h3>
                 <div>
                     <label>Exercise</label>
