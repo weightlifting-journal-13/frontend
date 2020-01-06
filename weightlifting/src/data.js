@@ -205,32 +205,6 @@ export const data = {
             },
         }
     },
-    cardio: {
-        bodypart: 'cardio',
-        isSelected: false,
-        exercises: {
-            treadmill: {
-                isSelected: false,
-                exercisename: "Treadmill"
-            },
-            bike: {
-                isSelected: false,
-                exercisename: "Bike"
-            },
-            running_Elyptical: {
-                isSelected: false,
-                exercisename: "Running Elyptical"
-            },
-            rowing_Machine: {
-                isSelected: false,
-                exercisename: "Rowing Machine"
-            },
-            stairs_Machine: {
-                isSelected: false,
-                exercisename: "Stairs Machine"
-            },
-        }
-    },
     circuits: {
         bodypart: 'circuits',
         isSelected: false,

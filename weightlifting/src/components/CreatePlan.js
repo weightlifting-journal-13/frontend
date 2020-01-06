@@ -8,9 +8,10 @@ const CreatePlan = (props) => {
         workoutplan: '',
         workoutdescription: '',
         exercise: '',
-        numberofsets: '',
-        numberofreps: '',
-        weightlifted: ''
+        numberofsets: 0,
+        numberofreps: 0,
+        weightlifted: 0,
+        lengthofrest: 0,
     })
 
     //use Object.values to convert to array so we can map it
@@ -19,7 +20,6 @@ const CreatePlan = (props) => {
 
     // watch for changes in 'workoutPlan' --> 1:bodypart, 2:exercises
     useEffect(() => {
-        setFormData(formData)
         setWorkoutPlan(workoutPlan)
     }, [formData, workoutPlan])
 
@@ -65,18 +65,20 @@ const CreatePlan = (props) => {
                 console.log(response)
                 setFormData(response)
 
-                //set workoutPlan and/or formData back to empty strings
-                // setWorkoutPlan({
+                //set workoutPlan checkboxes to false
+                // setWorkoutPlan(
+                //     workoutPlan(false)
+                //  )
 
-                // })
-
+                /// set formData inputs back to empty strings
                 setFormData({
                     workoutplan: '',
                     workoutdescription: '',
                     exercise: '',
                     numberofsets: '',
                     numberofreps: '',
-                    weightlifted: ''
+                    weightlifted: '',
+                    lengthofrest: ''
                 })
 
                 //redirect to MyPlans component
@@ -111,14 +113,12 @@ const CreatePlan = (props) => {
                 {result.map((item, index) => {
                     return (
                         <div key={index}>
-                            <input key={index} type='checkbox' />
+                            <input 
+                                key={index} 
+                                type='checkbox'
+                                name={item.bodypart} 
+                            />
                             <label>{item.bodypart}</label>
-                            {/* <label>Exercise</label> */}
-                            {/* <input
-                                    type='text'
-                                    name='exercise'
-                                    placeholder={item.bodypart}
-                                /> */}
                         </div>
                     )
                 })}
@@ -154,6 +154,14 @@ const CreatePlan = (props) => {
                         name='weight'
                         placeholder='0'
                         value={formData.weight}
+                        onChange={handleInputChanges}
+                    />
+                    <label>Length of rest</label>
+                    <input
+                        type='number'
+                        name='rest'
+                        placeholder='0 mins'
+                        value={formData.rest}
                         onChange={handleInputChanges}
                     />
                     <h4>Create your plan(final step)</h4>
