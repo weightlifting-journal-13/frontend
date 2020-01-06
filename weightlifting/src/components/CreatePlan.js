@@ -21,9 +21,6 @@ const CreatePlan = (props) => {
     const result = Object.values(workoutPlan)
     console.log(result)
 
-    // watch for changes in 'workoutPlan' --> 1:bodypart, 2:exercises
-
-
     //NATE:
     /*
      * 1. data  -state (check)
@@ -37,7 +34,7 @@ const CreatePlan = (props) => {
 
     // 2. handleInputChanges --> for text inputs
     const handleInputChanges = (e) => {
-        formData({
+        setFormData({
             ...formData,
             [e.target.name]: e.target.value
         })
@@ -54,23 +51,27 @@ const CreatePlan = (props) => {
     //        })
     //  }  
     const selectregion = (e) => {
+        e.stopPropagation()
         e.persist();
+
         console.log(e);
-         
-           let copy = workoutPlan[Number(e.target.id)]
-           copy = {
+
+        let copy = workoutPlan[Number(e.target.id)]
+        copy = {
             ...copy,
             isSelected: !copy.isSelected
-            };
-            setWorkoutPlan(
-                workoutPlan.splice((e.target.id),1, copy)
-                ) 
-                console.log(workoutPlan, 'inside Bobb')       
+        };
+        workoutPlan.splice((e.target.id), 1, copy)
+        setWorkoutPlan(
+            workoutPlan
+        )
+        console.log(workoutPlan, 'inside Bobb')
     }
 
     // 4. onSubmit form to post new workoutPlan to api
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
+        e.stopPropagation()
 
         //axiosWithAuth to post new/add new workout
         axiosWithAuth()
@@ -99,7 +100,7 @@ const CreatePlan = (props) => {
                 props.history.push('/MyPlans')
             })
             .catch(error => {
-                console.log('Sorry, workout plan not create', error)
+                console.log('Sorry, workout plan not created', error)
             })
     }
 
@@ -181,7 +182,7 @@ const CreatePlan = (props) => {
                         onChange={handleInputChanges}
                     />
                     <h4>Create your plan(final step)</h4>
-                    <button>Create plan</button>
+                    <button type='submit'>Create plan</button>
                 </div>
             </form>
         </div >
