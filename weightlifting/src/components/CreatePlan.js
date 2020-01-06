@@ -60,15 +60,18 @@ const CreatePlan = (props) => {
     }
 
     //  3. handleInputBodyPart --> for checkbox inputs
-    //  const handleInputBodyPart = (e) => {
-    //     setWorkoutPlan({
-    //         state[e.target.name] = {
-    //             ...state,
-    //             [e.target.name],
-    //             isSelected:!state[e.target.name]
-    //            }
-    //        })
-    //  }  
+    const handleInputBodyPart = (e) => {
+        const changedExerciseInput = exercises.map(input => {
+            if (e.target.name === input.exercisename) {
+                return { ...input, isSelected: !input.isSelected }
+            } else {
+                return input
+            }
+        })
+        console.log(changedExerciseInput)
+        setExercises(changedExerciseInput)
+    }
+
     const selectregion = (e) => {
         e.stopPropagation()
         e.persist();
@@ -168,7 +171,7 @@ const CreatePlan = (props) => {
                             id={index}
                             type='checkbox'
                             name={item.exercisename}
-                        // onChange={}
+                            onClick={handleInputBodyPart}
                         />
                         <label>{item.exercisename}</label>
                         {item.isSelected ?
