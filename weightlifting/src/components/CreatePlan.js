@@ -229,6 +229,68 @@ const CreatePlan = (props) => {
                     <h4>Create your plan(final step)</h4>
                     <button type='submit'>Create plan</button>
                 </div>
+                <h1>New UI Form template</h1>
+                <div>
+                    <form>
+                        <h3>Name your workout plan</h3>
+                        <input
+                            type='text'
+                            name='workoutplan'
+                            placeholder='Name your workout plan'
+                            value={formData.workoutplan}
+                            onChange={handleInputChanges}
+                        />
+                        <input
+                            type='text'
+                            name='workoutdescription'
+                            placeholder='Add plan description'
+                            value={formData.workoutdescription}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Exercise</label>
+                        <input
+                            type='text'
+                            name='exercise'
+                            placeholder='Exercise'
+                            value={formData.exercisename}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Number of sets</label>
+                        <input
+                            type='number'
+                            name='numberofsets'
+                            placeholder='0'
+                            value={formData.numberofsets}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Number of reps</label>
+                        <input
+                            type='number'
+                            name='numberofreps'
+                            placeholder='0'
+                            value={formData.numberofreps}
+                            onChange={handleInputChanges}
+                        />
+                        <label>lbs-optional</label>
+                        <input
+                            type='number'
+                            name='weightlifted'
+                            placeholder='0'
+                            value={formData.weightlifted}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Length of rest</label>
+                        <input
+                            type='number'
+                            name='lengthofrest'
+                            placeholder='0 mins'
+                            value={formData.lengthofrest}
+                            onChange={handleInputChanges}
+                        />
+                        <button>Add</button>
+                        <button>Delete</button>
+                    </form>
+                </div>
             </form>
         </div >
     );
