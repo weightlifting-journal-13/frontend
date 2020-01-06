@@ -22,15 +22,19 @@ const CreatePlan = (props) => {
         } else {
             const filtered = workoutPlan.filter(eachObj => eachObj.isSelected === true);
 
-            const exerciseArray = [];
+            let exerciseArray = [];
             for (let i = 0; i < filtered.length; i++) {
-                exerciseArray.push(Object.values(filtered[i].exercises))
+                //exerciseArray.push(Object.values(filtered[i].exercises))
+                exerciseArray = [...exerciseArray, ...Object.values(filtered[i].exercises)];
             }
+
             setExercises(exerciseArray);
             console.log(exerciseArray)
+
         }
     }, [data, workoutPlan, trigger])
 
+    console.log(exercises)
     console.log(workoutPlan, 'workoutPlan logged')
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
@@ -43,7 +47,7 @@ const CreatePlan = (props) => {
      * 3. create onChanger handler for form data text inputs (check)
      * 4. create onChange handler for checkbox inputs
      * 5. create onSubmit handler to post to api (check)
-     * 6. set up useEffect to watch for changes in 'workoutPlan': 1. bodypart, 2: exercises (check)
+     * 6. set up useEffect to watch for changes in 'workoutPlan': 1. bodypart, 2: exercises (check) 
      * 7. correct api endpoint to post data
      */
 
@@ -157,21 +161,18 @@ const CreatePlan = (props) => {
                     })}
                 </div>
 
-                <div>
-                    {exercises.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <input
-                                    key={index}
-                                    id={index}
-                                    type='checkbox'
-                                    name={item.exercisename}
-                                />
-                                <label>{item.exercisename}</label>
-                            </div>
-                        )
-                    })}
-                </div>
+                {exercises.map((item, index) => (
+                    <div key={index}>
+                        <input
+                            key={index}
+                            id={index}
+                            type='checkbox'
+                            name={item.exercisename}
+                        />
+                        <label>{item.exercisename}</label>
+                    </div>
+                ))}
+
                 <h3>Fill out exercises reps</h3>
                 <div>
                     <label>Exercise</label>
