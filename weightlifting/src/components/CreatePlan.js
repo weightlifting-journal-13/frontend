@@ -10,10 +10,10 @@ const CreatePlan = (props) => {
         workoutplan: '',
         workoutdescription: '',
         exercise: '',
-        numberofsets: 0,
-        numberofreps: 0,
-        weightlifted: 0,
-        lengthofrest: 0
+        numberofsets: '0',
+        numberofreps: '0',
+        weightlifted: '0',
+        lengthofrest: '0'
     })
     useEffect(() => {
         console.log('running')
@@ -129,14 +129,14 @@ const CreatePlan = (props) => {
                     type='text'
                     name='workoutname'
                     placeholder='Name your workout plan'
-                    value={setFormData.workoutname}
+                    value={formData.workoutname}
                     onChange={handleInputChanges}
                 />
                 <input
                     type='text'
                     name='description'
                     placeholder='Add plan description'
-                    value={setFormData.description}
+                    value={formData.description}
                     onChange={handleInputChanges}
                 />
                 <h4>Select your exercises</h4>
