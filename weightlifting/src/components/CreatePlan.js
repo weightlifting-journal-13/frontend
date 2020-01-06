@@ -31,6 +31,7 @@ const CreatePlan = (props) => {
         }
     }, [data, workoutPlan, trigger])
 
+    console.log(workoutPlan, 'workoutPlan logged')
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
@@ -119,7 +120,6 @@ const CreatePlan = (props) => {
             })
     }
 
-
     return (
         <div>
             <h1>Create new plan component</h1>
@@ -127,33 +127,36 @@ const CreatePlan = (props) => {
                 <h3>Name your workout plan</h3>
                 <input
                     type='text'
-                    name='workoutname'
+                    name='workoutplan'
                     placeholder='Name your workout plan'
-                    value={formData.workoutname}
+                    value={formData.workoutplan}
                     onChange={handleInputChanges}
                 />
                 <input
                     type='text'
-                    name='description'
+                    name='workoutdescription'
                     placeholder='Add plan description'
-                    value={formData.description}
+                    value={formData.workoutdescription}
                     onChange={handleInputChanges}
                 />
                 <h4>Select your exercises</h4>
-                {workoutPlan.map((item, index) => {
-                    return (
-                        <div key={index}>
-                            <input
-                                key={index}
-                                id={index}
-                                type='checkbox'
-                                name={item.bodypart}
-                                onClick={selectregion}
-                            />
-                            <label>{item.bodypart}</label>
-                        </div>
-                    )
-                })}
+                <div>
+                    {workoutPlan.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <input
+                                    key={index}
+                                    id={index}
+                                    type='checkbox'
+                                    name={item.bodypart}
+                                    onClick={selectregion}
+                                />
+                                <label>{item.bodypart}</label>
+                            </div>
+                        )
+                    })}
+                </div>
+
                 <div>
                     {exercises.map((item, index) => {
                         return (
@@ -182,33 +185,33 @@ const CreatePlan = (props) => {
                     <label>Number of sets</label>
                     <input
                         type='number'
-                        name='sets'
+                        name='numberofsets'
                         placeholder='0'
-                        value={formData.sets}
+                        value={formData.numberofsets}
                         onChange={handleInputChanges}
                     />
                     <label>Number of reps</label>
                     <input
                         type='number'
-                        name='reps'
+                        name='numberofreps'
                         placeholder='0'
-                        value={formData.reps}
+                        value={formData.numberofreps}
                         onChange={handleInputChanges}
                     />
                     <label>lbs-optional</label>
                     <input
                         type='number'
-                        name='weight'
+                        name='weightlifted'
                         placeholder='0'
-                        value={formData.weight}
+                        value={formData.weightlifted}
                         onChange={handleInputChanges}
                     />
                     <label>Length of rest</label>
                     <input
                         type='number'
-                        name='rest'
+                        name='lengthofrest'
                         placeholder='0 mins'
-                        value={formData.rest}
+                        value={formData.lengthofrest}
                         onChange={handleInputChanges}
                     />
                     <h4>Create your plan(final step)</h4>
