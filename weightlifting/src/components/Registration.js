@@ -20,39 +20,7 @@ const Registration = props => {
     console.log(registrationCredentials);
   };
 
-  const axiosSubmit = () => {
-    setIsLoading(true);
-    axiosWithAuth()
-      .post("/auth/register", registrationCredentials)
-      .then(response => {
-        console.log(response);
-
-        setRegistrationCredentials({
-          username: "",
-          password: ""
-        });
-
-        setIsLoading(false);
-
-        props.history.push("/");
-      })
-      .catch(error => {
-        console.log(
-          "Sorry, registration not complete. Please try again.",
-          error
-        );
-        setIsLoading(false);
-      });
-  };
-
-  //validation schema
-  //handleOnSubmitRegistration
-  //moved axios with auth axiosSubmit
-  // moved setIsLoading(true) to axiosSubmit
-  // auth submit back
-
-  const handleOnSubmitRegistration = e => {
-    e.preventDefault();
+  const regValidation = () => {
     let pwValid = false;
     let unValid = false;
     registrationCredentials.password.length >= "5"
@@ -67,11 +35,70 @@ const Registration = props => {
       : cogoToast.warn("Sorry, that username is invalid!", {
           position: "bottom-right"
         });
-
-    pwValid === true && unValid === true
-      ? console.log("valid")
-      : console.log(pwValid, unValid);
+    return (pwValid === true && unValid === true) ? true : false;
   };
+
+  const handleOnSubmitRegistration = e => {
+    e.preventDefault();
+    const isValid = regValidation();
+    if (isValid) {
+      setIsLoading(true);
+      axiosWithAuth()
+        .post("/auth/register", registrationCredentials)
+        .then(response => {
+          console.log(response);
+
+          setRegistrationCredentials({
+            username: "",
+            password: ""
+          });
+
+          setIsLoading(false);
+
+          props.history.push("/");
+        })
+        .catch(error => {
+          console.log(
+            "Sorry, registration not complete. Please try again.",
+            error
+          );
+          setIsLoading(false);
+        });
+    }
+  };
+
+  // const axiosSubmit = () => {
+  //   setIsLoading(true);
+  //   axiosWithAuth()
+  //     .post("/auth/register", registrationCredentials)
+  //     .then(response => {
+  //       console.log(response);
+
+  //       setRegistrationCredentials({
+  //         username: "",
+  //         password: ""
+  //       });
+
+  //       setIsLoading(false);
+
+  //       props.history.push("/");
+  //     })
+  //     .catch(error => {
+  //       console.log(
+  //         "Sorry, registration not complete. Please try again.",
+  //         error
+  //       );
+  //       setIsLoading(false);
+  //     });
+  // };
+
+  //validation schema
+  //handleOnSubmitRegistration
+  //moved axios with auth to axiosSubmit
+  // moved setIsLoading(true) to axiosSubmit
+  // auth submit back
+
+  //after adding regex, console shows error response from back end. prior to regex cogo toast messages were appearing
 
   return (
     <div>
