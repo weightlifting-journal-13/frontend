@@ -12,6 +12,8 @@ import Navigation from './components/Navigation';
 import './App.css';
 
 function App() {
+
+
   return (
     <div className="App">
 
@@ -19,7 +21,7 @@ function App() {
 
       <Route 
         exact path='/Registration'
-        render={props => <Registration {...props} /> } />
+        render={props => <Registration {...props}  /> } />
       <Route 
         exact path='/' 
         render={props => <Login {...props} />} />
