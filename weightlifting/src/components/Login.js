@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-
 const Login = (props) => {
     // make post request to receive token from api
     //handle the token, navigate to 'Dashboard' component page
