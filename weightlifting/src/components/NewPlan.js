@@ -54,7 +54,7 @@ const AddButton = styled.button`
 `
 
 const DeleteButton = styled.button`
-    width: 25%;
+    width: 10%;
     height: 50px;
     margin: auto;
     border-radius: 5px;
@@ -63,7 +63,30 @@ const DeleteButton = styled.button`
     font-weight: bold;
     background: #ff3d41;
     color: #FFF;
-    margin-top: 3%;
+`
+const CardWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const CardContainer = styled.div`
+    border: 1px solid lightgray;
+    width: 80%;
+    display: flex;
+    align-content: center;
+    margin: 2% 2%;
+    padding: 2% 5%;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+`
+
+const CardTextStyle = styled.p`
+    font-size: 1.2rem;
+    margin: 2% 2%;
+`
+
+const CardTextSpan = styled.span`
+    font-weight: bold;
 `
 
 const NewPlan = (props) => {
@@ -95,7 +118,6 @@ const NewPlan = (props) => {
 
         event.preventDefault();
         setWorkoutPlan({
-            ...workoutPlan,
             workoutplan: formData.workoutplan,
             workoutdescription: formData.workoutdescription,
             exercises: [...workoutPlan.exercises, {
@@ -109,6 +131,8 @@ const NewPlan = (props) => {
         });
         setFormData({
             ...formData,
+            workoutplan: '',
+            workoutdescription: '',
             exercise: '',
             numberofsets: 0,
             numberofreps: 0,
@@ -244,12 +268,16 @@ const NewPlan = (props) => {
                     {workoutPlan.exercises.map((exercise, index) => {
                         return (
                             <div key={index}>
-                                <p>Exercise: {exercise.exercise}</p>
-                                <p>Sets: {exercise.numberofsets}</p>
-                                <p>Reps: {exercise.numberofreps}</p>
-                                <p>Weight: {exercise.weightlifted} lbs</p>
-                                <p>Rest Time: {exercise.lengthofrest} minutes</p>
-                                <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete exercise</DeleteButton>
+                                <CardWrapper>
+                                    <CardContainer>
+                                        <CardTextStyle><CardTextSpan>Exercise:</CardTextSpan> {exercise.exercise}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Sets:</CardTextSpan> {exercise.numberofsets}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Reps:</CardTextSpan> {exercise.numberofreps}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weightlifted} lbs</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.lengthofrest} minutes</CardTextStyle>
+                                        <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
+                                    </CardContainer>
+                                </CardWrapper>
                             </div>
                         )
                     })}
