@@ -81,6 +81,7 @@ const NewPlan = (props) => {
         weightlifted: 0,
         lengthofrest: 0
     })
+
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
@@ -239,7 +240,7 @@ const NewPlan = (props) => {
                         />
                     </FormContainer>
 
-                    <h3>Array where exercises are added listed below in queue</h3>
+                    <h3>{workoutPlan.exercises.length > 0 ? `Your exercises for your ${workoutPlan.workoutplan} plan` : `Please add an exercise to your plan`} </h3>
                     {workoutPlan.exercises.map((exercise, index) => {
                         return (
                             <div key={index}>
