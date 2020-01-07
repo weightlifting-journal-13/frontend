@@ -15,6 +15,7 @@ const CreatePlan = (props) => {
         weightlifted: 0,
         lengthofrest: 0
     })
+
     useEffect(() => {
         console.log('running')
         if (data && (workoutPlan.length === 0)) {
@@ -39,7 +40,7 @@ const CreatePlan = (props) => {
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
     console.log(result)
-
+    console.log(formData, 'FormData Todd is here')
     //NATE:
     /*
      * 1. data  -state (check)
@@ -60,15 +61,22 @@ const CreatePlan = (props) => {
     }
 
     //  3. handleInputBodyPart --> for checkbox inputs
-    //  const handleInputBodyPart = (e) => {
-    //     setWorkoutPlan({
-    //         state[e.target.name] = {
-    //             ...state,
-    //             [e.target.name],
-    //             isSelected:!state[e.target.name]
-    //            }
-    //        })
-    //  }  
+    const handleInputBodyPart = (e) => {
+        const changedExerciseInput = exercises.map(input => {
+            if (e.target.name === input.exercisename) {
+                return { ...input, isSelected: !input.isSelected }
+            } else {
+                return input
+            }
+        })
+        console.log(changedExerciseInput)
+        setExercises(changedExerciseInput)
+        setFormData({
+            ...formData,
+            exercise: e.target.name
+        })
+    }
+
     const selectregion = (e) => {
         e.stopPropagation()
         e.persist();
@@ -168,7 +176,7 @@ const CreatePlan = (props) => {
                             id={index}
                             type='checkbox'
                             name={item.exercisename}
-                        // onChange={}
+                            onClick={handleInputBodyPart}
                         />
                         <label>{item.exercisename}</label>
                         {item.isSelected ?
@@ -178,7 +186,7 @@ const CreatePlan = (props) => {
                                     type='text'
                                     name='exercise'
                                     placeholder='Exercise'
-                                    value={formData.exercise}
+                                    value={formData.exercisename}
                                     onChange={handleInputChanges}
                                 />
                                 <label>Number of sets</label>
@@ -213,13 +221,75 @@ const CreatePlan = (props) => {
                                     value={formData.lengthofrest}
                                     onChange={handleInputChanges}
                                 />
-                            </div>) : (<p>Select your exercise...</p>)}
+                            </div>) : (<p></p>)}
                     </div>
                 ))}
 
                 <div>
                     <h4>Create your plan(final step)</h4>
                     <button type='submit'>Create plan</button>
+                </div>
+                <h1>New UI Form template</h1>
+                <div>
+                    <form>
+                        <h3>Name your workout plan</h3>
+                        <input
+                            type='text'
+                            name='workoutplan'
+                            placeholder='Name your workout plan'
+                            value={formData.workoutplan}
+                            onChange={handleInputChanges}
+                        />
+                        <input
+                            type='text'
+                            name='workoutdescription'
+                            placeholder='Add plan description'
+                            value={formData.workoutdescription}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Exercise</label>
+                        <input
+                            type='text'
+                            name='exercise'
+                            placeholder='Exercise'
+                            value={formData.exercisename}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Number of sets</label>
+                        <input
+                            type='number'
+                            name='numberofsets'
+                            placeholder='0'
+                            value={formData.numberofsets}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Number of reps</label>
+                        <input
+                            type='number'
+                            name='numberofreps'
+                            placeholder='0'
+                            value={formData.numberofreps}
+                            onChange={handleInputChanges}
+                        />
+                        <label>lbs-optional</label>
+                        <input
+                            type='number'
+                            name='weightlifted'
+                            placeholder='0'
+                            value={formData.weightlifted}
+                            onChange={handleInputChanges}
+                        />
+                        <label>Length of rest</label>
+                        <input
+                            type='number'
+                            name='lengthofrest'
+                            placeholder='0 mins'
+                            value={formData.lengthofrest}
+                            onChange={handleInputChanges}
+                        />
+                        <button>Add</button>
+                        <button>Delete</button>
+                    </form>
                 </div>
             </form>
         </div >

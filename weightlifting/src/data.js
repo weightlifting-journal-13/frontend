@@ -25,7 +25,7 @@ export const data = {
             },
             incline_Dumbell_Press: {
                 isSelected: false,
-                exercisename: "Incline Bench Press"
+                exercisename: "Incline Dumbell Press"
             },
             dips: {
                 isSelected: false,
