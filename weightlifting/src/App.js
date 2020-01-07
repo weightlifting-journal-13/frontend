@@ -9,7 +9,6 @@ import PresetPlans from './components/PresetPlans';
 import Profiles from './components/Profiles';
 import Registration from './components/Registration';
 import Navigation from './components/Navigation';
-import NewPlan from './components/NewPlan';
 import EditWorkoutPlan from './components/EditWorkoutPlan';
 import './App.css';
 
@@ -36,9 +35,6 @@ function App() {
       <Route
         exact path='/Profiles'
         render={props => <Profiles {...props} />} />
-      <Route
-        exact path='/NewPlan'
-        render={props => <NewPlan {...props} />} />
       <Route
         exact path={`/EditPlan/:id`}
         render={props => <EditWorkoutPlan {...props} />}
