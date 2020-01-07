@@ -88,15 +88,22 @@ const NewPlan = (props) => {
     console.log("WORKOUT PLAN IS NOW ", workoutPlan);
 
     const addToPlan = (event) => {
+        event.persist();
+        event.stopPropagation()
+        console.log(event);
+
         event.preventDefault();
         setWorkoutPlan({
             ...workoutPlan,
+            workoutplan: formData.workoutplan,
+            workoutdescription: formData.workoutdescription,
             exercises: [...workoutPlan.exercises, {
                 exercise: formData.exercise,
                 numberofsets: formData.numberofsets,
                 numberofreps: formData.numberofreps,
                 weightlifted: formData.weightlifted,
                 lengthofrest: formData.lengthofrest,
+                id: Date.now()
             }],
         });
         setFormData({
@@ -110,6 +117,14 @@ const NewPlan = (props) => {
     }
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
+    const handleDeleteExercise = (event, id) => {
+        event.stopPropagation()
+        const filteredExercise = workoutPlan.exercises.filter(item => item.id !== id)
+        setWorkoutPlan({
+            ...workoutPlan,
+            exercises: filteredExercise
+        })
+    }
 
     // 2. handleInputChanges --> for text inputs
     const handleInputChanges = (e) => {
@@ -223,19 +238,17 @@ const NewPlan = (props) => {
                             onChange={handleInputChanges}
                         />
                     </FormContainer>
-                    <FormContainer>
-                        <DeleteButton>Delete</DeleteButton>
-                    </FormContainer>
 
                     <h3>Array where exercises are added listed below in queue</h3>
                     {workoutPlan.exercises.map((exercise, index) => {
                         return (
-                            <div>
+                            <div key={index}>
                                 <p>Exercise: {exercise.exercise}</p>
                                 <p>Sets: {exercise.numberofsets}</p>
                                 <p>Reps: {exercise.numberofreps}</p>
                                 <p>Weight: {exercise.weightlifted} lbs</p>
                                 <p>Rest Time: {exercise.lengthofrest} minutes</p>
+                                <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete exercise</DeleteButton>
                             </div>
                         )
                     })}
