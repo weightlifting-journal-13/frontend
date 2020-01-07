@@ -9,6 +9,7 @@ import PresetPlans from './components/PresetPlans';
 import Profiles from './components/Profiles';
 import Registration from './components/Registration';
 import NewPlan from './components/NewPlan';
+import EditWorkoutPlan from './components/EditWorkoutPlan';
 import './App.css';
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
       <Route
         exact path='/NewPlan'
         render={props => <NewPlan {...props} />} />
+      <Route
+        exact path={`/EditPlan/:id`}
+        render={props => <EditWorkoutPlan {...props} />}
+      />
     </div>
   );
 }
