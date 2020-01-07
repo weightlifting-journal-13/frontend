@@ -3,7 +3,11 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { data } from '../data';
 
 const NewPlan = (props) => {
-    const [workoutPlan, setWorkoutPlan] = useState(data ? Object.values(data) : [])
+    const [workoutPlan, setWorkoutPlan] = useState({
+        workoutplan: '',
+        workoutdescription: '',
+        exercises: [],
+    });
     const [formData, setFormData] = useState({
         workoutplan: '',
         workoutdescription: '',
@@ -19,7 +23,30 @@ const NewPlan = (props) => {
     const result = Object.values(workoutPlan)
     console.log(result)
     console.log(formData, 'FormData Todd is here')
+    console.log("WORKOUT PLAN IS NOW ", workoutPlan);
 
+    const addToPlan = (event) => {
+        event.preventDefault();
+        setWorkoutPlan({
+            workoutplan: formData.workoutplan,
+            workoutdescription: formData.workoutdescription,
+            exercises: [...workoutPlan.exercises, {
+                exercise: formData.exercise,
+                numberofsets: formData.numberofsets,
+                numberofreps: formData.numberofreps,
+                weightlifted: formData.weightlifted,
+                lengthofrest: formData.lengthofrest,
+            }],
+        });
+        setFormData({
+            ...formData,
+            exercise: '',
+            numberofsets: 0,
+            numberofreps: 0,
+            weightlifted: 0,
+            lengthofrest: 0
+        });
+    }
 
     // 2. handleInputChanges --> for text inputs
     const handleInputChanges = (e) => {
@@ -86,7 +113,7 @@ const NewPlan = (props) => {
                     />
                 </div>
                 <div>
-                    <button>+ Add exercise</button>
+                    <button onClick={addToPlan}>+ Add exercise</button>
                 </div>
                 <div>
                     <label>Exercise</label>
@@ -94,7 +121,7 @@ const NewPlan = (props) => {
                         type='text'
                         name='exercise'
                         placeholder='Exercise'
-                        value={formData.exercisename}
+                        value={formData.exercise}
                         onChange={handleInputChanges}
                     />
                     <label>Number of sets</label>
@@ -131,6 +158,17 @@ const NewPlan = (props) => {
                     />
                     <button>Delete</button>
                     <h3>Array where exercises are added listed below in queue</h3>
+                    {workoutPlan.exercises.map((exercise, index) => {
+                        return (
+                            <div>
+                                <p>Exercise: {exercise.exercise}</p>
+                                <p>Sets: {exercise.numberofsets}</p>
+                                <p>Reps: {exercise.numberofreps}</p>
+                                <p>Weight: {exercise.weightlifted} lbs</p>
+                                <p>Rest Time: {exercise.lengthofrest} minutes</p>
+                            </div>
+                        )
+                    })}
                     <div>
                         <button type='submit'>Create plan</button>
                     </div>
