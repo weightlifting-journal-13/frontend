@@ -10,11 +10,7 @@ import Profiles from './components/Profiles';
 import Registration from './components/Registration';
 import Navigation from './components/Navigation';
 import NewPlan from './components/NewPlan';
-<<<<<<< HEAD
 import EditWorkoutPlan from './components/EditWorkoutPlan';
-=======
-
->>>>>>> 85724cfe3b378326bd24fae97d5f2eb190110bba
 import './App.css';
 
 function App() {

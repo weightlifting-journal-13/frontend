@@ -257,11 +257,11 @@ const NewPlan = (props) => {
                                 onChange={handleInputChanges}
                             /> */}
                             {/* Add select options here for workout list */}
-                            <SelectInput>
+                            <SelectInput name='exercise' onChange={handleInputChanges}>
                                 <option name='chest' selected disabled>Select an exercise</option>
                                 {/* chest */}
                                 <option name='chest' disabled>CHEST</option>
-                                <option name='flatebenchpress'>Flat Bench Press</option>
+                                <option name='flatbenchpress'>Flat Bench Press</option>
                                 <option name='inclinebenchpress'>Incline Bench Press</option>
                                 <option name='declinebenchpress'>Decline Bench Press</option>
                                 <option name='pushups'>Push Ups</option>
