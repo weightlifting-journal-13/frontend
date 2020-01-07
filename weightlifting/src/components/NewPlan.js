@@ -5,27 +5,40 @@ import styled from 'styled-components';
 const FormWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
-    padding: 3% 0;
-    margin: auto;
-`
-const FormContainer = styled.div`
-    margin: 2% 0;
     width: 100%;
+    padding: 3% 0;
+    /* border: 1px solid green; */
+    justify-content: center;
+ `
+
+const FormContainer = styled.div`
+    margin: 1% 0;
+    width: 80%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;    
+    justify-content: center;
+    align-items: center;   
+    /* border: 2px solid blue;  */
 `
 
 const TextInput = styled.input`
-    width: 80%;
+    margin: 0 1%;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 2%;
+    border: 2px solid lightgrey;
+`
+
+const WorkoutPlanInput = styled.input`
+    width: 40%;
     height: 45px;
     border-radius: 5px;
     border: 2px solid lightgray;
     font-size: 1.2rem;
     padding: 0 2%;
-    margin: 0 3%;
-    margin-top: 3%;
+    margin-top: 1%;
+    margin: 0% 1%;
 `
 
 const ButtonStyle = styled.button`
@@ -41,7 +54,7 @@ const ButtonStyle = styled.button`
     margin-top: 3%;
 `
 const AddButton = styled.button`
-    width: 40%;
+    width: 25%;
     height: 50px;
     margin: auto;
     border-radius: 5px;
@@ -50,7 +63,7 @@ const AddButton = styled.button`
     font-weight: bold;
     background: #3d94ff;
     color: #FFF;
-    margin-top: 3%;
+    margin-top: 2%;
 `
 
 const DeleteButton = styled.button`
@@ -63,6 +76,7 @@ const DeleteButton = styled.button`
     font-weight: bold;
     background: #ff3d41;
     color: #FFF;
+    margin-left: 5%;
 `
 const CardWrapper = styled.div`
     display: flex;
@@ -71,22 +85,34 @@ const CardWrapper = styled.div`
 
 const CardContainer = styled.div`
     border: 1px solid lightgray;
-    width: 80%;
+    width: 100%;
     display: flex;
     align-content: center;
     margin: 2% 2%;
-    padding: 2% 5%;
+    padding: 2% 1%;
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `
 
 const CardTextStyle = styled.p`
     font-size: 1.2rem;
-    margin: 2% 2%;
+    /* margin: 2% 2%; */
+    /* border: 1px solid red; */
+    /* padding: 0% 1%; */
+    width: 100%;
 `
 
 const CardTextSpan = styled.span`
     font-weight: bold;
+    /* border: 1px solid green; */
+`
+
+const LabelStyle = styled.label`
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 20%;
+    /* border: 1px solid blue; */
+    text-align: left;
 `
 
 const NewPlan = (props) => {
@@ -99,10 +125,10 @@ const NewPlan = (props) => {
         workoutplan: '',
         workoutdescription: '',
         exercise: '',
-        numberofsets: 0,
-        numberofreps: 0,
-        weightlifted: 0,
-        lengthofrest: 0
+        numberofsets: '',
+        numberofreps: '',
+        weightlifted: '',
+        lengthofrest: ''
     })
 
     //use Object.values to convert to array so we can map it
@@ -118,6 +144,7 @@ const NewPlan = (props) => {
 
         event.preventDefault();
         setWorkoutPlan({
+
             workoutplan: formData.workoutplan,
             workoutdescription: formData.workoutdescription,
             exercises: [...workoutPlan.exercises, {
@@ -131,13 +158,11 @@ const NewPlan = (props) => {
         });
         setFormData({
             ...formData,
-            workoutplan: '',
-            workoutdescription: '',
             exercise: '',
-            numberofsets: 0,
-            numberofreps: 0,
-            weightlifted: 0,
-            lengthofrest: 0
+            numberofsets: '',
+            numberofreps: '',
+            weightlifted: '',
+            lengthofrest: ''
         });
     }
 
@@ -177,10 +202,10 @@ const NewPlan = (props) => {
                     workoutplan: '',
                     workoutdescription: '',
                     exercise: '',
-                    numberofsets: 0,
-                    numberofreps: 0,
-                    weightlifted: 0,
-                    lengthofrest: 0
+                    numberofsets: '',
+                    numberofreps: '',
+                    weightlifted: '',
+                    lengthofrest: ''
                 })
                 //redirect to MyPlans component
                 props.history.push('/MyPlans')
@@ -194,14 +219,14 @@ const NewPlan = (props) => {
             <h1>New plan component</h1>
             <form onSubmit={handleOnSubmitForm} >
                 <div>
-                    <TextInput
+                    <WorkoutPlanInput
                         type='text'
                         name='workoutplan'
                         placeholder='Name your workout plan'
                         value={formData.workoutplan}
                         onChange={handleInputChanges}
                     />
-                    <TextInput
+                    <WorkoutPlanInput
                         type='text'
                         name='workoutdescription'
                         placeholder='Add plan description'
@@ -210,60 +235,62 @@ const NewPlan = (props) => {
                     />
                 </div>
                 <div>
-                    <AddButton onClick={addToPlan}>+ Add exercise</AddButton>
-                </div>
-                <div>
-                    <FormContainer>
-                        <label>Exercise</label>
-                        <TextInput
-                            type='text'
-                            name='exercise'
-                            placeholder='Exercise'
-                            value={formData.exercise}
-                            onChange={handleInputChanges}
-                        />
-                    </FormContainer>
-                    <FormContainer>
-                        <label>Number of sets</label>
-                        <TextInput
-                            type='number'
-                            name='numberofsets'
-                            placeholder='0'
-                            value={formData.numberofsets}
-                            onChange={handleInputChanges}
-                        />
-                    </FormContainer>
-                    <FormContainer>
-                        <label>Number of reps</label>
-                        <TextInput
-                            type='number'
-                            name='numberofreps'
-                            placeholder='0'
-                            value={formData.numberofreps}
-                            onChange={handleInputChanges}
-                        />
-                    </FormContainer>
-                    <FormContainer>
-                        <label>lbs-optional</label>
-                        <TextInput
-                            type='number'
-                            name='weightlifted'
-                            placeholder='0'
-                            value={formData.weightlifted}
-                            onChange={handleInputChanges}
-                        />
-                    </FormContainer>
-                    <FormContainer>
-                        <label>Length of rest</label>
-                        <TextInput
-                            type='number'
-                            name='lengthofrest'
-                            placeholder='0 mins'
-                            value={formData.lengthofrest}
-                            onChange={handleInputChanges}
-                        />
-                    </FormContainer>
-
+                    <FormWrapper>
+                        <h1>Add your custom exercises to your plan</h1>
+                        <FormContainer>
+                            <LabelStyle>Exercise name</LabelStyle>
+                            <TextInput
+                                type='text'
+                                name='exercise'
+                                placeholder='Exercise'
+                                value={formData.exercise}
+                                onChange={handleInputChanges}
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <LabelStyle>Number of sets</LabelStyle>
+                            <TextInput
+                                type='number'
+                                name='numberofsets'
+                                placeholder='Number of sets'
+                                value={formData.numberofsets}
+                                onChange={handleInputChanges}
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <LabelStyle>Number of reps</LabelStyle>
+                            <TextInput
+                                type='number'
+                                name='numberofreps'
+                                placeholder='Number of reps'
+                                value={formData.numberofreps}
+                                onChange={handleInputChanges}
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <LabelStyle>lbs-optional</LabelStyle>
+                            <TextInput
+                                type='number'
+                                name='weightlifted'
+                                placeholder='lbs lifted'
+                                value={formData.weightlifted}
+                                onChange={handleInputChanges}
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <LabelStyle>Length of rest</LabelStyle>
+                            <TextInput
+                                type='number'
+                                name='lengthofrest'
+                                placeholder='Length of rest'
+                                value={formData.lengthofrest}
+                                onChange={handleInputChanges}
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <AddButton onClick={addToPlan}>Add exercise</AddButton>
+                        </FormContainer>
+                    </FormWrapper>
                     <h3>{workoutPlan.exercises.length > 0 ? `Your exercises for your ${workoutPlan.workoutplan} plan` : `Please add an exercise to your plan`} </h3>
                     {workoutPlan.exercises.map((exercise, index) => {
                         return (
