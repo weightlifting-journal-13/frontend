@@ -2,7 +2,7 @@
 
 // ]
 
-export const userReducer = (state = initialState, action) => {
+export const workoutReducer = (state = initialState, action) => {
     console.log("STATE AND ACTION: ", state, action);
     switch (action.type) {
         case "REQUEST":
@@ -11,40 +11,36 @@ export const userReducer = (state = initialState, action) => {
                 busy: true,
             });
 
-        case "EDIT_EXERCISE_SUCCESS":
-            return ("NYI!");
+        case "REQUEST_FAILED":
+            return ({
+                ...state,
+                busy: false,
+                error: action.payload,
+            });
 
-        case "EDIT_EXERCISE_FAILED":
-            return ("NYI!");
+        case "EDIT_EXERCISE_SUCCESS":
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
 
         case "ADD_EXERCISE_SUCCESS":
-            return ("NYI!");
-
-        case "ADD_EXERCISE_FAILED":
             return ("NYI!");
 
         case "DELETE_EXERCISE_SUCCESS":
             return ("NYI!");
 
-        case "DELETE_EXERCISE_FAILED":
-            return ("NYI!");
-
         case "ADD_WORKOUT_SUCCESS":
-            return ("NYI!");
-
-        case "ADD_WORKOUT_FAILED":
             return ("NYI!");
 
         case "EDIT_WORKOUT_SUCCESS":
             return ("NYI!");
 
-        case "EDIT_POST_FAILED":
-            return ("NYI!");
-
         case "DELETE_WORKOUT_SUCCESS":
             return ("NYI!");
 
-        case "DELETE_POST_FAILED":
+        case "SELECT_WORKOUT_SUCCESS":
             return ("NYI!");
 
         default:
