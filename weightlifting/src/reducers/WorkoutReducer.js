@@ -11,22 +11,6 @@ export const initialState = [
                 weight: 100,
                 suggested_order: 1
             },
-            {
-                exercise_id: 31,
-                rest_time: "string like 0 min",
-                sets: 4,
-                reps: 4,
-                weight: 100,
-                suggested_order: 2
-            },
-            {
-                exercise_id: 46,
-                rest_time: "string like 0 min",
-                sets: 4,
-                reps: 4,
-                weight: 100,
-                suggested_order: 3
-            }
         ]
     }
 ]
@@ -93,6 +77,9 @@ export const workoutReducer = (state = initialState, action) => {
         case "LOGIN_SUCCESS":
             return ({
                 ...state,
+                // Storing our login token in state is PROBABLY NOT THE BEST IDEA, but localStorage is a rabbit hole for right now...
+                token: action.payload.token,
+                userID: action.payload.userID,
                 busy: false,
                 error: ''
             });
