@@ -26,23 +26,41 @@ export const workoutReducer = (state = initialState, action) => {
             });
 
         case "ADD_EXERCISE_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         case "DELETE_EXERCISE_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         case "ADD_WORKOUT_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         case "EDIT_WORKOUT_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         case "DELETE_WORKOUT_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         case "SELECT_WORKOUT_SUCCESS":
-            return ("NYI!");
-
+            return ({
+                ...state,
+                busy: false,
+                error: ''
+            });
         default:
             return state;
     }
