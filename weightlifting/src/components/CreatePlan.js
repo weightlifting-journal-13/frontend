@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { data } from '../data';
+import Navigation from './Navigation';
 
 const CreatePlan = (props) => {
     const [workoutPlan, setWorkoutPlan] = useState(data ? Object.values(data) : [])
@@ -126,6 +127,7 @@ const CreatePlan = (props) => {
 
     return (
         <div>
+            <Navigation />
             <h1>Create new plan component</h1>
             <form onSubmit={handleOnSubmitForm} >
                 <h3>Name your workout plan</h3>

@@ -8,7 +8,7 @@ import MyPlans from './components/MyPlans';
 import PresetPlans from './components/PresetPlans';
 import Profiles from './components/Profiles';
 import Registration from './components/Registration';
-import Navigation from './components/Navigation';
+      
 import './App.css';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
 
-      <Navigation />
+    
 
       <Route 
         exact path='/Registration'
