@@ -26,15 +26,15 @@ const Registration = props => {
     registrationCredentials.password.length >= "5"
       ? (pwValid = true)
       : cogoToast.warn("Sorry, that password is a little short!", {
-          position: "bottom-right"
-        });
+        position: "bottom-right"
+      });
     //check for valid email
     const emailRegEx = /\S+@\S+\.\S+/;
     emailRegEx.test(registrationCredentials.username.toLowerCase()) === true
       ? (unValid = true)
       : cogoToast.warn("Sorry, that username is invalid!", {
-          position: "bottom-right"
-        });
+        position: "bottom-right"
+      });
     return (pwValid === true && unValid === true) ? true : false;
   };
 
