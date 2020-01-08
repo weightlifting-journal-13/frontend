@@ -138,7 +138,8 @@ const CreatePlan = (props) => {
         numberofsets: '',
         numberofreps: '',
         weightlifted: '',
-        lengthofrest: ''
+        lengthofrest: '',
+        orderofexercises: ''
     })
 
     //use Object.values to convert to array so we can map it
@@ -163,6 +164,7 @@ const CreatePlan = (props) => {
                 numberofreps: formData.numberofreps,
                 weightlifted: formData.weightlifted,
                 lengthofrest: formData.lengthofrest,
+                orderofexercises: formData.orderofexercises,
                 id: Date.now()
             }],
         });
@@ -172,7 +174,8 @@ const CreatePlan = (props) => {
             numberofsets: '',
             numberofreps: '',
             weightlifted: '',
-            lengthofrest: ''
+            lengthofrest: '',
+            orderofexercises: ''
         });
     }
 
@@ -215,7 +218,8 @@ const CreatePlan = (props) => {
                     numberofsets: '',
                     numberofreps: '',
                     weightlifted: '',
-                    lengthofrest: ''
+                    lengthofrest: '',
+                    orderofexercises: ''
                 })
                 //redirect to MyPlans component
                 props.history.push('/MyPlans')
@@ -372,6 +376,7 @@ const CreatePlan = (props) => {
                                 placeholder='Number of sets'
                                 value={formData.numberofsets}
                                 onChange={handleInputChanges}
+                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -382,6 +387,7 @@ const CreatePlan = (props) => {
                                 placeholder='Number of reps'
                                 value={formData.numberofreps}
                                 onChange={handleInputChanges}
+                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -392,6 +398,7 @@ const CreatePlan = (props) => {
                                 placeholder='lbs lifted'
                                 value={formData.weightlifted}
                                 onChange={handleInputChanges}
+                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -402,6 +409,18 @@ const CreatePlan = (props) => {
                                 placeholder='Length of rest'
                                 value={formData.lengthofrest}
                                 onChange={handleInputChanges}
+                                required
+                            />
+                        </FormContainer>
+                        <FormContainer>
+                            <LabelStyle>Order</LabelStyle>
+                            <TextInput
+                                type='number'
+                                name='orderofexercises'
+                                placeholder='Order of exercises'
+                                value={formData.orderofexercises}
+                                onChange={handleInputChanges}
+                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -419,6 +438,7 @@ const CreatePlan = (props) => {
                                         <CardTextStyle><CardTextSpan>Reps:</CardTextSpan> {exercise.numberofreps}</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weightlifted} lbs</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.lengthofrest} minutes</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.orderofexercises}</CardTextStyle>
                                         <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
