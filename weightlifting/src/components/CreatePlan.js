@@ -154,29 +154,32 @@ const CreatePlan = (props) => {
         console.log(event);
 
         event.preventDefault();
-        setWorkoutPlan({
-            //need to add suggested order text box 
-            workoutplan: formData.workoutplan,
-            workoutdescription: formData.workoutdescription,
-            exercises: [...workoutPlan.exercises, {
-                exercise: formData.exercise,
-                numberofsets: formData.numberofsets,
-                numberofreps: formData.numberofreps,
-                weightlifted: formData.weightlifted,
-                lengthofrest: formData.lengthofrest,
-                orderofexercises: formData.orderofexercises,
-                id: Date.now()
-            }],
-        });
-        setFormData({
-            ...formData,
-            exercise: '',
-            numberofsets: '',
-            numberofreps: '',
-            weightlifted: '',
-            lengthofrest: '',
-            orderofexercises: ''
-        });
+
+        if (formData.exercise && formData.numberofsets && formData.numberofreps && formData.weightlifted && formData.lengthofrest && formData.orderofexercises) {
+            setWorkoutPlan({
+                //need to add suggested order text box 
+                workoutplan: formData.workoutplan,
+                workoutdescription: formData.workoutdescription,
+                exercises: [...workoutPlan.exercises, {
+                    exercise: formData.exercise,
+                    numberofsets: formData.numberofsets,
+                    numberofreps: formData.numberofreps,
+                    weightlifted: formData.weightlifted,
+                    lengthofrest: formData.lengthofrest,
+                    orderofexercises: formData.orderofexercises,
+                    id: Date.now()
+                }],
+            });
+            setFormData({
+                ...formData,
+                exercise: '',
+                numberofsets: '',
+                numberofreps: '',
+                weightlifted: '',
+                lengthofrest: '',
+                orderofexercises: ''
+            });
+        };
     }
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
