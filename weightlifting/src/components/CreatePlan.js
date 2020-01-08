@@ -233,7 +233,7 @@ const CreatePlan = (props) => {
     }
     return (
         <div>
-            <h1>New plan component</h1>
+            <h1>Create your custom workout plan</h1>
             <form onSubmit={handleOnSubmitForm} >
                 <div>
                     <WorkoutPlanInput
