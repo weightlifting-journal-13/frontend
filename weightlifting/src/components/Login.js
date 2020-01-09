@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { LoginWrapper, LoginContainer, LoginImage, LoginImageWrapper, LoginTextInput, ButtonStyle } from '../StyledComponents/StyledComponents';
 
 const Login = (props) => {
     // make post request to receive token from api
@@ -55,29 +56,34 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <h1>Please login</h1>
-            <form onSubmit={handleLoginSubmit}>
-                <input
-                    type='text'
-                    name='username'
-                    placeholder='Email (username)'
-                    value={credentials.username}
-                    onChange={handleInputChanges}
-                />
-                <input
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    value={credentials.password}
-                    onChange={handleInputChanges}
-                />
-                <button type='submit'>
-                    {/* Login */}
-                    {isLoading ? 'Logging in...' : 'Log in'}
-                </button>
-            </form>
-        </div>
+        <LoginWrapper>
+            <LoginContainer>
+                <h1>Hello, please login!</h1>
+                <form onSubmit={handleLoginSubmit}>
+                    <LoginTextInput
+                        type='text'
+                        name='username'
+                        placeholder='Email (username)'
+                        value={credentials.username}
+                        onChange={handleInputChanges}
+                    />
+                    <LoginTextInput
+                        type='password'
+                        name='password'
+                        placeholder='Password'
+                        value={credentials.password}
+                        onChange={handleInputChanges}
+                    />
+                    <ButtonStyle type='submit'>
+                        {/* Login */}
+                        {isLoading ? 'Logging in...' : 'Log in'}
+                    </ButtonStyle>
+                </form>
+            </LoginContainer>
+            <LoginImageWrapper>
+                <LoginImage src={'https://images.unsplash.com/photo-1547919307-1ecb10702e6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80'} alt='gym weights workout bar tires' />
+            </LoginImageWrapper>
+        </LoginWrapper>
     );
 }
 

@@ -196,3 +196,40 @@ export const LinkStyle = styled(NavLink).attrs(() => ({ activeClassName: 'select
     font-size: 1.4rem;
     font-weight: bold;
 `
+
+//Login
+export const LoginWrapper = styled.div`
+    display: flex;
+`
+
+export const LoginImage = styled.img`
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 100vh;
+`
+
+export const LoginContainer = styled.div`
+    /* border: 2px solid blue; */
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+`
+
+export const LoginImageWrapper = styled.div`
+    /* border: 2px solid blue; */
+    width: 50%;
+    height: 100vh;
+    
+`
+export const LoginTextInput = styled.input`
+    margin: 2% 1%;
+    height: 40px;
+    width: 60%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 2%;
+    border: 2px solid lightgrey;
+`
