@@ -1,41 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const PresetPlanButton = styled.button`
-    width: 20%;
-    height: 50px;
-    margin: auto;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    background: salmon;
-    color: #FFF;
-    margin-top: 3%;
-`
-const CustomPlanButton = styled.button`
-    width: 20%;
-    height: 50px;
-    margin: auto;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    background: #5ccc6e;
-    color: #FFF;
-    margin-top: 3%;
-`
-const ImageWrapper = styled.img`
-    width: 50%;
-    border-radius: 5px;
-`
+import { PresetPlanButton, CustomPlanButton, ImageWrapper, ButtonWrapper } from '../StyledComponents/StyledComponents';
 
-const ButtonWrapper = styled.div`
-   border: 1px solid red;
-   display: flex;
-   margin-top: 2%;
-   
-`
 
 const Dashboard = (props) => {
 

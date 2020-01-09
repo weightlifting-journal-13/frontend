@@ -1,6 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
+//Create Plan
 export const FormWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -122,4 +123,76 @@ export const LabelStyle = styled.label`
     width: 20%;
     /* border: 1px solid blue; */
     text-align: left;
+`
+
+//Dashboard
+export const PresetPlanButton = styled.button`
+    width: 20%;
+    height: 50px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: salmon;
+    color: #FFF;
+    margin-top: 3%;
+`
+export const CustomPlanButton = styled.button`
+    width: 20%;
+    height: 50px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #5ccc6e;
+    color: #FFF;
+    margin-top: 3%;
+`
+export const ImageWrapper = styled.img`
+    width: 50%;
+    border-radius: 5px;
+`
+
+export const ButtonWrapper = styled.div`
+   border: 1px solid red;
+   display: flex;
+   margin-top: 2%;
+   
+`
+
+//Navigation
+export const NavigationWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+    background: #00aced;
+
+    .selected{
+        text-decoration: underline;
+    }
+`
+
+export const LogoutButton = styled.button`
+    width: 10%;
+    height: 40px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #01acee;
+    color: #FFF;
+    margin-left: 5%;
+    border: 2px solid #FFF;
+    
+`
+
+export const LinkStyle = styled(NavLink).attrs(() => ({ activeClassName: 'selected' }))`
+    text-decoration: none;
+    color: #FFF;
+    padding:0 3%;
+    font-size: 1.4rem;
+    font-weight: bold;
 `

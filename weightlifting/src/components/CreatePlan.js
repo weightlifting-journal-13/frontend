@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import styled from 'styled-components';
 
 import { FormWrapper, FormContainer, TextInput, SelectInput, WorkoutPlanInput, ButtonStyle, AddButton, DeleteButton, CardWrapper, CardContainer, CardTextSpan, CardTextStyle, LabelStyle } from '../StyledComponents/StyledComponents';
 
