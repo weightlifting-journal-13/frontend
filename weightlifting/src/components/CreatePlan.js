@@ -10,6 +10,7 @@ const CreatePlan = (props) => {
         workout_description: '',
         records: []
     });
+
     const [formData, setFormData] = useState({
         // workoutplan: '',
         // workout_description: '',
@@ -62,12 +63,13 @@ const CreatePlan = (props) => {
                 suggested_order: 0
             })
         };
-    }
+    };
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
     const handleDeleteExercise = (event, id) => {
         event.preventDefault();
         event.stopPropagation()
+        event.preventDefault()
         const filteredExercise = workoutPlan.records.filter(item => item.workout_id !== id)
         setWorkoutPlan({
             ...workoutPlan,
@@ -135,6 +137,9 @@ const CreatePlan = (props) => {
                 .catch(error => {
                     console.log('Sorry, workout plan not created', error)
                 })
+        }
+        else {
+            console.log("API POST DID NOT FIRE! \n USER_ID: ", workoutPlan.user_id, "WORKOUT_NAME: ", workoutPlan.workout_name, "WORKOUT_DESCRIPTION: ", workoutPlan.workout_description, "RECORDS: ", workoutPlan.records);
         }
     }
     return (
@@ -343,7 +348,7 @@ const CreatePlan = (props) => {
                                         <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weight} lbs</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.rest_time} minutes</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.suggested_order}</CardTextStyle>
-                                        <DeleteButton onClick={event => handleDeleteExercise(event, exercise.workout_id)} >Delete</DeleteButton>
+                                        <DeleteButton type="button" onClick={event => handleDeleteExercise(event, exercise.workout_id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
                             </div>

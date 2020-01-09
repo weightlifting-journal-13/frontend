@@ -2,19 +2,20 @@ import React from 'react';
 
 import { NavigationWrapper, LogoutButton, LinkStyle } from '../StyledComponents/StyledComponents';
 
-
 const Navigation = (props) => {
 
     const logout = (event) => {
         event.preventDefault();
 
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+
         props.history.push('/')
     }
 
     return (
         <NavigationWrapper>
-            <LinkStyle to={`/Dashboard`}>Dashboard</LinkStyle>
+            <LinkStyle to={`/Dashboard`} >Dashboard</LinkStyle>
             <LinkStyle to={`/MyPlans`}>My Plans</LinkStyle>
             <LinkStyle to={`/CreatePlan`}>Create plan</LinkStyle>
             <LinkStyle to={`/PresetPlans`}>Preset plans</LinkStyle>
