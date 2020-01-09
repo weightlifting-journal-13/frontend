@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
 import { FormWrapper, FormContainer, TextInput, SelectInput, WorkoutPlanInput, ButtonStyle, AddButton, DeleteButton, CardWrapper, CardContainer, CardTextSpan, CardTextStyle, LabelStyle } from '../StyledComponents/StyledComponents';
 
 
 const CreatePlan = (props) => {
     const [workoutPlan, setWorkoutPlan] = useState({
-        user_id: 0,
+        user_id: localStorage.getItem("user_id"),
         workout_name: '',
         workout_description: '',
         records: []
@@ -102,39 +101,41 @@ const CreatePlan = (props) => {
         console.log(workoutPlan);
 
         //axiosWithAuth to post new/add new workout
-        axiosWithAuth()
-            .post('/workouts/create', workoutPlan)
-            .then(response => {
-                console.log(response)
-                setFormData(response)
-                //set workoutPlan checkboxes to false
-                // setWorkoutPlan(
-                //     workoutPlan(false)
-                //  )
-                /// setformData inputs back to empty strings
-                setFormData({
-                    exercise_id: 1,
-                    workout_name: '',
-                    workout_description: '',
-                    sets: 0,
-                    reps: 0,
-                    weight: 0,
-                    rest_time: '',
-                    suggested_order: 0
-                })
+        if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
+            axiosWithAuth()
+                .post('/workouts/create', workoutPlan)
+                .then(response => {
+                    console.log("WORKOUT CREATE RESPONSE: ", response);
+                    setFormData(response)
+                    //set workoutPlan checkboxes to false
+                    // setWorkoutPlan(
+                    //     workoutPlan(false)
+                    //  )
+                    /// setformData inputs back to empty strings
+                    setFormData({
+                        exercise_id: 1,
+                        workout_name: '',
+                        workout_description: '',
+                        sets: 0,
+                        reps: 0,
+                        weight: 0,
+                        rest_time: '',
+                        suggested_order: 0
+                    })
 
-                setWorkoutPlan({
-                    user_id: 0,
-                    workout_name: '',
-                    workout_description: '',
-                    records: []
+                    setWorkoutPlan({
+                        user_id: 0,
+                        workout_name: '',
+                        workout_description: '',
+                        records: []
+                    })
+                    //redirect to MyPlans component
+                    props.history.push('/MyPlans')
                 })
-                //redirect to MyPlans component
-                props.history.push('/MyPlans')
-            })
-            .catch(error => {
-                console.log('Sorry, workout plan not created', error)
-            })
+                .catch(error => {
+                    console.log('Sorry, workout plan not created', error)
+                })
+        }
     }
     return (
         <div>

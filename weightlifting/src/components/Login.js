@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { store } from "../reducers/WorkoutReducer";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { LoginWrapper, LoginContainer, LoginImage, LoginImageWrapper, LoginTextInput, ButtonStyle } from '../StyledComponents/StyledComponents';
 
@@ -6,12 +7,19 @@ const Login = (props) => {
     // make post request to receive token from api
     //handle the token, navigate to 'Dashboard' component page
 
+    const { dispatch } = useContext(store);
+
+    // PLEASE keep these here in case we go plummeting down the rabbit hole again.
+    // console.log("GLOBAL STATE IS: ", globalState);
+    // console.log(globalState);
+    // console.log("USECONTEXT ON STORE LOOKS LIKE THIS: ", useContext(store));
+
     //setup useState to store inital state/data
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
     })
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     //handleInputChanges
     const handleInputChanges = (e) => {
@@ -35,8 +43,6 @@ const Login = (props) => {
         axiosWithAuth()
             .post('/auth/login', credentials)
             .then(response => {
-                console.log(response)
-                localStorage.setItem('token', response.data.token)
 
                 //reset values back to empty strings
                 setCredentials({
@@ -45,6 +51,8 @@ const Login = (props) => {
                 })
 
                 setIsLoading(false);
+
+                dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
 
                 //automatically redirect from Login to --> Dashboard
                 props.history.push('/Dashboard')
