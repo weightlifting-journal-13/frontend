@@ -131,6 +131,7 @@ const CreatePlan = (props) => {
         workoutdescription: '',
         exercises: []
     });
+    
     const [formData, setFormData] = useState({
         workoutplan: '',
         workoutdescription: '',

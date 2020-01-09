@@ -7,11 +7,10 @@ const NavigationWrapper = styled.div`
     display: flex;
     justify-content: center;
     padding: 2% 0;
-    background: #00aced;
 
-    .selected{
-        text-decoration: underline;
-    }
+    .selected {
+      border-bottom: 5px solid #663399;
+  }
 `
 
 const LogoutButton = styled.button`
@@ -31,14 +30,10 @@ const LogoutButton = styled.button`
 
 const LinkStyle = styled(NavLink).attrs(() => ({ activeClassName: 'selected' }))`
     text-decoration: none;
-    color: #FFF;
-    padding:0 3%;
+    color: black;
+    width: 20%;
     font-size: 1.4rem;
     font-weight: bold;
-
-    &:active {
-      border-bottom: 5px solid #663399;
-  }
 `
 
 const Navigation = (props) => {
@@ -52,7 +47,7 @@ const Navigation = (props) => {
 
     return (
         <NavigationWrapper>
-            <LinkStyle to={`/Dashboard`}>Dashboard</LinkStyle>
+            <LinkStyle to={`/Dashboard`} >Dashboard</LinkStyle>
             <LinkStyle to={`/MyPlans`}>My Plans</LinkStyle>
             <LinkStyle to={`/CreatePlan`}>Create plan</LinkStyle>
             <LinkStyle to={`/PresetPlans`}>Preset plans</LinkStyle>

@@ -1,11 +1,13 @@
-import React, { useState, UseEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import { data } from '../data';
+import PlanCard from './PlanCard';
 
 const PresetPlans = () => {
 
-  const [Exercises, setExercises] = useState(data)
+  const [bodyPart, setBodyPart] = useState(data)
 
+//for when the API becomes available
   // useEffect(() => {
   //   const getExercises = () => {
   //     axios
@@ -23,15 +25,37 @@ const PresetPlans = () => {
   //   getExercises();
   // }, [])
 
+//what I needed if data was kept as an object
+    // const mapDataObject = (object, cb) => {
+    //   Object.keys(object).map((key) => {
+    //     cb(key, object[key]);
+    //     setBodyPart(key)
+    //   });
+    // }
+    
     return ( 
-        <div>
-            <Navigation />
-            {Exercises.map((part, index) => (
-              <PlanCard 
-                part={part}
-                key={index}
-              />
-            ))}
+
+      //Card should consist of workout plan name and workoutdescription
+      //but that state is declared in CreatePlan
+
+      // const [workoutPlan, setWorkoutPlan] = useState({
+      //   workoutplan: '',
+      //   workoutdescription: '',
+
+      <div>
+        {bodyPart.map((obj, index) => (
+          <PlanCard 
+            key={index}
+            bodypart={obj.bodypart}
+          />
+        ))}
+
+        {/* {mapDataObject(bodyPart, (key, value) => 
+          <PlanCard 
+            part={key}
+            bodypart={value.bodypart}
+          />
+        )} */}
         </div>
      );
 }

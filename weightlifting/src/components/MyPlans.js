@@ -12,7 +12,6 @@ const MyPlans = (props) => {
 
     return (
         <div>
-            <Navigation />
             <h1>My plans --> show newly create plans here</h1>
             <button onClick={editWorkoutPlan}>Edit plan</button>
         </div>

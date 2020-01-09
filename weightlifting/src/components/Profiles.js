@@ -4,7 +4,6 @@ import Navigation from './Navigation';
 const Profiles = () => {
     return ( 
         <div>
-          <Navigation />
             <h1>Profiles Component --> other people profile</h1>
         </div>
      );
