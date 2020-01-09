@@ -10,7 +10,7 @@ const CreatePlan = (props) => {
 
 
     const [workoutPlan, setWorkoutPlan] = useState({
-        user_id: localStorage.getItem("user_id"),
+        user_id: Number(localStorage.getItem("user_id")),
         workout_name: '',
         workout_description: '',
         records: []
@@ -74,7 +74,7 @@ const CreatePlan = (props) => {
                     weight: Number(formData.weight),
                     rest_time: formData.rest_time,
                     suggested_order: Number(formData.suggested_order),
-                    workout_id: Date.now()
+                    id: Date.now()
                 }],
             });
             setFormData({
@@ -90,9 +90,10 @@ const CreatePlan = (props) => {
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
     const handleDeleteExercise = (event, id) => {
+        event.preventDefault();
         event.stopPropagation()
-        event.preventDefault()
-        const filteredExercise = workoutPlan.records.filter(item => item.workout_id !== id)
+
+        const filteredExercise = workoutPlan.records.filter(item => item.id !== id)
         setWorkoutPlan({
             ...workoutPlan,
             records: filteredExercise
@@ -124,6 +125,7 @@ const CreatePlan = (props) => {
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation()
+<<<<<<< HEAD
         console.log(workoutPlan);
 
         const modifiedRecords = workoutPlan.records.map((record) => {
@@ -134,11 +136,33 @@ const CreatePlan = (props) => {
         const planToSend = { ...workoutPlan, records: [...modifiedRecords] }
 
         console.log("PLAN TO SEND IS: ", planToSend);
+=======
+>>>>>>> 709e7b4669b7908d248d5c0afbba2e795031cf72
 
         //axiosWithAuth to post new/add new workout
         if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
+            const modifiedRecordsArray = workoutPlan.records.map(eachObj => {
+                return {
+                    exercise_id: eachObj.exercise_id,
+                    rest_time: eachObj.rest_time,
+                    sets: eachObj.sets,
+                    reps: eachObj.reps,
+                    weight: eachObj.weight,
+                    suggested_order: eachObj.suggested_order
+                }
+            })
+
+            const objToSubmit = {
+                ...workoutPlan,
+                records: modifiedRecordsArray
+            }
+            console.log(objToSubmit);
             axiosWithAuth()
+<<<<<<< HEAD
                 .post('/workouts/create', planToSend)
+=======
+                .post('/workouts/create', objToSubmit)
+>>>>>>> 709e7b4669b7908d248d5c0afbba2e795031cf72
                 .then(response => {
                     console.log("WORKOUT CREATE RESPONSE: ", response);
                     dispatch({ type: "ADD_WORKOUT_SUCCESS", payload: response.data });
@@ -285,7 +309,7 @@ const CreatePlan = (props) => {
                                         <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weight} lbs</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.rest_time} minutes</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.suggested_order}</CardTextStyle>
-                                        <DeleteButton type="button" onClick={event => handleDeleteExercise(event, exercise.workout_id)} >Delete</DeleteButton>
+                                        <DeleteButton type="button" onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
                             </div>
