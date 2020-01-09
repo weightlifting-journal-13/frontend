@@ -41,11 +41,7 @@ const Login = (props) => {
             : cogoToast.warn("Sorry, that password is a little short!", {
                 position: "bottom-right"
             });
-<<<<<<< HEAD
         //check for valid email
-=======
-
->>>>>>> 709e7b4669b7908d248d5c0afbba2e795031cf72
         const emailRegEx = /\S+@\S+\.\S+/;
         emailRegEx.test(credentials.username.toLowerCase()) === true
             ? (logInUnValid = true)

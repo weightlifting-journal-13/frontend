@@ -125,7 +125,6 @@ const CreatePlan = (props) => {
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation()
-<<<<<<< HEAD
         console.log(workoutPlan);
 
         const modifiedRecords = workoutPlan.records.map((record) => {
@@ -136,8 +135,6 @@ const CreatePlan = (props) => {
         const planToSend = { ...workoutPlan, records: [...modifiedRecords] }
 
         console.log("PLAN TO SEND IS: ", planToSend);
-=======
->>>>>>> 709e7b4669b7908d248d5c0afbba2e795031cf72
 
         //axiosWithAuth to post new/add new workout
         if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
@@ -158,11 +155,7 @@ const CreatePlan = (props) => {
             }
             console.log(objToSubmit);
             axiosWithAuth()
-<<<<<<< HEAD
                 .post('/workouts/create', planToSend)
-=======
-                .post('/workouts/create', objToSubmit)
->>>>>>> 709e7b4669b7908d248d5c0afbba2e795031cf72
                 .then(response => {
                     console.log("WORKOUT CREATE RESPONSE: ", response);
                     dispatch({ type: "ADD_WORKOUT_SUCCESS", payload: response.data });
