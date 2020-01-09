@@ -36,6 +36,12 @@ const Login = (props) => {
     const logInValidation = () => {
         let logInPwValid = false;
         let logInUnValid = false;
+        credentials.password.length >= "3"
+            ? (logInPwValid = true)
+            : cogoToast.warn("Sorry, that password is a little short!", {
+                position: "bottom-right"
+            });
+        //check for valid email
         const emailRegEx = /\S+@\S+\.\S+/;
         emailRegEx.test(credentials.username.toLowerCase()) === true
             ? (logInUnValid = true)
@@ -51,7 +57,7 @@ const Login = (props) => {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const logInIsValid = logInValidation();
-        console.log("USER DATA ON LOGIN REQUEST IS: ", credentials)
+        console.log("USER DATA ON LOGIN REQUEST IS: ")
         if (logInIsValid) {
             setIsLoading(true);
             axiosWithAuth()
