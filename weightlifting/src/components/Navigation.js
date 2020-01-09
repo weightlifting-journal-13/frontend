@@ -7,7 +7,9 @@ const Navigation = (props) => {
     const logout = (event) => {
         event.preventDefault();
 
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+
         props.history.push('/')
     }
 
