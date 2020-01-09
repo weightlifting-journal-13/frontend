@@ -59,10 +59,13 @@ export const ButtonStyle = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: #5ccc6e;
+    background: #5ccc6e; 
     color: #FFF;
     margin-top: 3%;
+
+
 `
+
 export const AddButton = styled.button`
     width: 25%;
     height: 50px;
@@ -182,9 +185,24 @@ export const LogoutButton = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: #01acee;
+    background: ${props => props.editStyle ? "lightGrey" : "#01acee"};
     color: #FFF;
     margin-left: 5%;
+    border: 2px solid #FFF;
+    
+`
+
+export const EditButton = styled.button`
+    width: 25%;
+    height: 40px;
+    margin: 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: ${props => props.selectStyle ? "#01acee" : "lightGrey"};
+    color: #FFF;
+    margin-left: 3%;
     border: 2px solid #FFF;
     
 `
@@ -232,4 +250,12 @@ export const LoginTextInput = styled.input`
     font-size: 1rem;
     padding: 0 2%;
     border: 2px solid lightgrey;
+`
+export const Card = styled.div`
+  display: inline-block;
+  height: 250px;
+  width: 500px;
+  margin: 1.5%;
+  border-radius: 15px;
+  box-shadow: 5px 5px 30px -10px;
 `
