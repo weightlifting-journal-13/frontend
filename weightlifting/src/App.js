@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
@@ -17,16 +17,17 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navigation /> */}
       <PrivateRoute path='/' component={Navigation} />
-      <Route exact path='/Registration' render={props => <Registration {...props} />} />
-      <Route exact path='/' render={props => <Login {...props} />} />
-      <PrivateRoute exact path='/Dashboard' component={Dashboard} />
-      <PrivateRoute exact path='/MyPlans' component={MyPlans} />
-      <PrivateRoute exact path='/CreatePlan' component={CreatePlan} />
-      <PrivateRoute exact path='/PresetPlans' component={PresetPlans} />
-      <PrivateRoute exact path='/Profiles' component={Profiles} />
-      <PrivateRoute exact path='/EditPlan/:id' component={EditWorkoutPlan} />
+      <Switch>
+        <Route exact path='/Registration' render={props => <Registration {...props} />} />
+        <Route exact path='/' render={props => <Login {...props} />} />
+        <PrivateRoute exact path='/Dashboard' component={Dashboard} />
+        <PrivateRoute exact path='/MyPlans' component={MyPlans} />
+        <PrivateRoute exact path='/CreatePlan' component={CreatePlan} />
+        <PrivateRoute exact path='/PresetPlans' component={PresetPlans} />
+        <PrivateRoute exact path='/Profiles' component={Profiles} />
+        <PrivateRoute exact path='/EditPlan/:id' component={EditWorkoutPlan} />
+      </Switch>
     </div>
   );
 }
