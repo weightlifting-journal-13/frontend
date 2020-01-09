@@ -127,19 +127,21 @@ const LabelStyle = styled.label`
 
 const CreatePlan = (props) => {
     const [workoutPlan, setWorkoutPlan] = useState({
-        workoutplan: '',
-        workoutdescription: '',
-        exercises: []
+        user_id: 0,
+        workout_name: '',
+        workout_description: '',
+        records: []
     });
     const [formData, setFormData] = useState({
-        workoutplan: '',
-        workoutdescription: '',
+        // workoutplan: '',
+        // workout_description: '',
+        exercise_id: 1,
         exercise: '',
-        numberofsets: '',
-        numberofreps: '',
-        weightlifted: '',
-        lengthofrest: '',
-        orderofexercises: ''
+        sets: 0,
+        reps: 0,
+        weight: 0,
+        rest_time: '',
+        suggested_order: 0
     })
 
     //use Object.values to convert to array so we can map it
@@ -155,40 +157,40 @@ const CreatePlan = (props) => {
 
         event.preventDefault();
 
-        if (formData.exercise && formData.numberofsets && formData.numberofreps && formData.weightlifted && formData.lengthofrest && formData.orderofexercises) {
+        if (formData.exercise && formData.sets && formData.reps && formData.weight && formData.rest_time && formData.suggested_order) {
             setWorkoutPlan({
                 //need to add suggested order text box 
-                workoutplan: formData.workoutplan,
-                workoutdescription: formData.workoutdescription,
-                exercises: [...workoutPlan.exercises, {
+                workout_name: workoutPlan.workout_name,
+                workout_description: workoutPlan.workout_description,
+                records: [...workoutPlan.records, {
+                    exercise_id: formData.exercise_id,
                     exercise: formData.exercise,
-                    numberofsets: formData.numberofsets,
-                    numberofreps: formData.numberofreps,
-                    weightlifted: formData.weightlifted,
-                    lengthofrest: formData.lengthofrest,
-                    orderofexercises: formData.orderofexercises,
+                    sets: formData.sets,
+                    reps: formData.reps,
+                    weight: formData.weight,
+                    rest_time: formData.rest_time,
+                    suggested_order: formData.suggested_order,
                     id: Date.now()
                 }],
             });
             setFormData({
-                ...formData,
-                exercise: '',
-                numberofsets: '',
-                numberofreps: '',
-                weightlifted: '',
-                lengthofrest: '',
-                orderofexercises: ''
-            });
+                exercise_id: 1,
+                sets: 0,
+                reps: 0,
+                weight: 0,
+                rest_time: '',
+                suggested_order: 0
+            })
         };
     }
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
     const handleDeleteExercise = (event, id) => {
         event.stopPropagation()
-        const filteredExercise = workoutPlan.exercises.filter(item => item.id !== id)
+        const filteredExercise = workoutPlan.records.filter(item => item.id !== id)
         setWorkoutPlan({
             ...workoutPlan,
-            exercises: filteredExercise
+            records: filteredExercise
         })
     }
 
@@ -199,6 +201,14 @@ const CreatePlan = (props) => {
             [e.target.name]: e.target.value
         })
     }
+
+    const handleInputWorkoutName = (event) => {
+        setWorkoutPlan({
+            ...workoutPlan,
+            [event.target.name]: event.target.value
+        })
+    }
+
     // 4. onSubmit form to post new workoutPlan to api
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
@@ -215,14 +225,21 @@ const CreatePlan = (props) => {
                 //  )
                 /// setformData inputs back to empty strings
                 setFormData({
-                    workoutplan: '',
-                    workoutdescription: '',
-                    exercise: '',
-                    numberofsets: '',
-                    numberofreps: '',
-                    weightlifted: '',
-                    lengthofrest: '',
-                    orderofexercises: ''
+                    exercise_id: 1,
+                    workout_name: '',
+                    workout_description: '',
+                    sets: 0,
+                    reps: 0,
+                    weight: 0,
+                    rest_time: '',
+                    suggested_order: 0
+                })
+
+                setWorkoutPlan({
+                    user_id: 0,
+                    workout_name: '',
+                    workout_description: '',
+                    records: []
                 })
                 //redirect to MyPlans component
                 props.history.push('/MyPlans')
@@ -238,17 +255,17 @@ const CreatePlan = (props) => {
                 <div>
                     <WorkoutPlanInput
                         type='text'
-                        name='workoutplan'
+                        name='workout_name'
                         placeholder='Name your workout plan'
-                        value={formData.workoutplan}
-                        onChange={handleInputChanges}
+                        value={workoutPlan.workout_name}
+                        onChange={handleInputWorkoutName}
                     />
                     <WorkoutPlanInput
                         type='text'
-                        name='workoutdescription'
+                        name='workout_description'
                         placeholder='Add plan description'
-                        value={formData.workoutdescription}
-                        onChange={handleInputChanges}
+                        value={workoutPlan.workout_description}
+                        onChange={handleInputWorkoutName}
                     />
                 </div>
                 <div>
@@ -375,9 +392,9 @@ const CreatePlan = (props) => {
                             <LabelStyle>Number of sets</LabelStyle>
                             <TextInput
                                 type='number'
-                                name='numberofsets'
+                                name='sets'
                                 placeholder='Number of sets'
-                                value={formData.numberofsets}
+                                value={formData.sets}
                                 onChange={handleInputChanges}
                                 required
                             />
@@ -386,9 +403,9 @@ const CreatePlan = (props) => {
                             <LabelStyle>Number of reps</LabelStyle>
                             <TextInput
                                 type='number'
-                                name='numberofreps'
+                                name='reps'
                                 placeholder='Number of reps'
-                                value={formData.numberofreps}
+                                value={formData.reps}
                                 onChange={handleInputChanges}
                                 required
                             />
@@ -397,9 +414,9 @@ const CreatePlan = (props) => {
                             <LabelStyle>lbs-optional</LabelStyle>
                             <TextInput
                                 type='number'
-                                name='weightlifted'
+                                name='weight'
                                 placeholder='lbs lifted'
-                                value={formData.weightlifted}
+                                value={formData.weight}
                                 onChange={handleInputChanges}
                                 required
                             />
@@ -408,9 +425,9 @@ const CreatePlan = (props) => {
                             <LabelStyle>Length of rest</LabelStyle>
                             <TextInput
                                 type='number'
-                                name='lengthofrest'
-                                placeholder='Length of rest'
-                                value={formData.lengthofrest}
+                                name='rest_time'
+                                placeholder='0'
+                                value={formData.rest_time}
                                 onChange={handleInputChanges}
                                 required
                             />
@@ -419,9 +436,9 @@ const CreatePlan = (props) => {
                             <LabelStyle>Order</LabelStyle>
                             <TextInput
                                 type='number'
-                                name='orderofexercises'
+                                name='suggested_order'
                                 placeholder='Order of exercises'
-                                value={formData.orderofexercises}
+                                value={formData.suggested_order}
                                 onChange={handleInputChanges}
                                 required
                             />
@@ -430,18 +447,18 @@ const CreatePlan = (props) => {
                             <AddButton onClick={addToPlan}>Add exercise</AddButton>
                         </FormContainer>
                     </FormWrapper>
-                    <h3>{workoutPlan.exercises.length > 0 ? `Your exercises for your ${workoutPlan.workoutplan} plan` : `Please add an exercise to your plan`} </h3>
-                    {workoutPlan.exercises.map((exercise, index) => {
+                    <h3>{workoutPlan.records.length > 0 ? `Your exercises for your ${workoutPlan.workout_name} plan` : `Please add an exercise to your plan`} </h3>
+                    {workoutPlan.records.map((exercise, index) => {
                         return (
                             <div key={index}>
                                 <CardWrapper>
                                     <CardContainer>
                                         <CardTextStyle><CardTextSpan>Exercise:</CardTextSpan> {exercise.exercise}</CardTextStyle>
-                                        <CardTextStyle><CardTextSpan>Sets:</CardTextSpan> {exercise.numberofsets}</CardTextStyle>
-                                        <CardTextStyle><CardTextSpan>Reps:</CardTextSpan> {exercise.numberofreps}</CardTextStyle>
-                                        <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weightlifted} lbs</CardTextStyle>
-                                        <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.lengthofrest} minutes</CardTextStyle>
-                                        <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.orderofexercises}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Sets:</CardTextSpan> {exercise.sets}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Reps:</CardTextSpan> {exercise.reps}</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weight} lbs</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.rest_time} minutes</CardTextStyle>
+                                        <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.suggested_order}</CardTextStyle>
                                         <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
