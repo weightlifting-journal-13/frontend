@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { store } from "../reducers/WorkoutReducer";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { LoginWrapper, LoginContainer, LoginImage, LoginImageWrapper, LoginTextInput, ButtonStyle } from '../StyledComponents/StyledComponents';
+import cogoToast from "cogo-toast";
 
 const Login = (props) => {
     // make post request to receive token from api
@@ -32,35 +33,50 @@ const Login = (props) => {
         console.log(credentials)
     }
 
+    const logInValidation = () => {
+        let logInPwValid = false;
+        let logInUnValid = false;
+        const emailRegEx = /\S+@\S+\.\S+/;
+        emailRegEx.test(credentials.username.toLowerCase()) === true
+            ? (logInUnValid = true)
+            : cogoToast.warn("Sorry, that username is invalid!", {
+                position: "bottom-right"
+            });
+        return (logInPwValid === true && logInUnValid === true) ? true : false;
+    };
+
     //handleLoginSubmit
     //use axiosWithAuth --> all done inside handleLoginSubmit
     //successful post --> props.history.push('/Dashboard')
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        setIsLoading(true);
+        const logInIsValid = logInValidation();
+        console.log("USER DATA ON LOGIN REQUEST IS: ", credentials)
+        if (logInIsValid) {
+            setIsLoading(true);
+            axiosWithAuth()
+                .post('/auth/login', credentials)
+                .then(response => {
+                    console.log(response)
+                    localStorage.setItem('token', response.data.token)
 
-        //axiosWithAuth to login
-        axiosWithAuth()
-            .post('/auth/login', credentials)
-            .then(response => {
+                    //reset values back to empty strings
+                    setCredentials({
+                        username: '',
+                        password: ''
+                    });
 
-                //reset values back to empty strings
-                setCredentials({
-                    username: '',
-                    password: ''
+                    dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
+
+                    //automatically redirect from Login to --> Dashboard
+                    props.history.push('/Dashboard')
                 })
-
-                setIsLoading(false);
-
-                dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
-
-                //automatically redirect from Login to --> Dashboard
-                props.history.push('/Dashboard')
-            })
-            .catch(error => {
-                console.log('Sorry, login credentials not valid.', error)
-                setIsLoading(false)
-            })
+                .catch(error => {
+                    console.log('Sorry, login credentials not valid.', error)
+                    setIsLoading(false)
+                })
+        }
+        //axiosWithAuth to login
     }
 
     return (

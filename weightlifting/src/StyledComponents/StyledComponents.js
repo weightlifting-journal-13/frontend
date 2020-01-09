@@ -167,11 +167,10 @@ export const NavigationWrapper = styled.div`
     display: flex;
     justify-content: center;
     padding: 2% 0;
-    background: #00aced;
 
-    .selected{
-        text-decoration: underline;
-    }
+    .selected {
+      border-bottom: 5px solid #663399;
+  }
 `
 
 export const LogoutButton = styled.button`
@@ -191,8 +190,8 @@ export const LogoutButton = styled.button`
 
 export const LinkStyle = styled(NavLink).attrs(() => ({ activeClassName: 'selected' }))`
     text-decoration: none;
-    color: #FFF;
-    padding:0 3%;
+    color: black;
+    width: 20%;
     font-size: 1.4rem;
     font-weight: bold;
 `

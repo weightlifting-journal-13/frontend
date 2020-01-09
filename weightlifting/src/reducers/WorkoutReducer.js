@@ -94,14 +94,13 @@ const WorkoutProvider = ({ children }) => {
             case "LOGIN_SUCCESS":
                 localStorage.setItem('token', action.payload.token);
                 localStorage.setItem('user_id', action.payload.user_id);
-
-                console.log("GLOBAL STATE AFTER LOGIN IS: ", {
-                    ...state,
-                    // Storing our login token in state is PROBABLY NOT THE BEST IDEA, but localStorage is a rabbit hole for right now...
-                    user_id: action.payload,
-                    busy: false,
-                    error: ''
-                });
+                // console.log("GLOBAL STATE AFTER LOGIN IS: ", {
+                //     ...state,
+                //     // Storing our login token in state is PROBABLY NOT THE BEST IDEA, but localStorage is a rabbit hole for right now...
+                //     user_id: action.payload,
+                //     busy: false,
+                //     error: ''
+                // });
                 return ({
                     ...state,
                     // Storing our login token in state is PROBABLY NOT THE BEST IDEA, but localStorage is a rabbit hole for right now...

@@ -1,4 +1,5 @@
 import React from 'react';
+import Navigation from './Navigation';
 
 import { PresetPlanButton, CustomPlanButton, ImageWrapper, ButtonWrapper } from '../StyledComponents/StyledComponents';
 
