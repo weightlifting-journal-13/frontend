@@ -2,7 +2,6 @@ import React from 'react';
 
 import { NavigationWrapper, LogoutButton, LinkStyle } from '../StyledComponents/StyledComponents';
 
-
 const Navigation = (props) => {
 
     const logout = (event) => {
@@ -14,7 +13,7 @@ const Navigation = (props) => {
 
     return (
         <NavigationWrapper>
-            <LinkStyle to={`/Dashboard`}>Dashboard</LinkStyle>
+            <LinkStyle to={`/Dashboard`} >Dashboard</LinkStyle>
             <LinkStyle to={`/MyPlans`}>My Plans</LinkStyle>
             <LinkStyle to={`/CreatePlan`}>Create plan</LinkStyle>
             <LinkStyle to={`/PresetPlans`}>Preset plans</LinkStyle>
