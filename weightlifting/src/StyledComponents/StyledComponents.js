@@ -166,8 +166,9 @@ export const ButtonWrapper = styled.div`
 export const NavigationWrapper = styled.div`
     display: flex;
     justify-content: center;
-    padding: 2% 0;
-
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: 0 10px 10px -15px;
     .selected {
       border-bottom: 5px solid #663399;
   }
