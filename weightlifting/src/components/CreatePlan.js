@@ -25,8 +25,8 @@ const CreatePlan = (props) => {
 
     //use Object.values to convert to array so we can map it
     const result = Object.values(workoutPlan)
-    console.log(result)
-    console.log(formData, 'FormData Todd is here')
+    // console.log(result)
+    // console.log(formData, 'FormData Todd is here')
     console.log("WORKOUT PLAN IS NOW ", workoutPlan);
 
     const addToPlan = (event) => {
@@ -39,16 +39,17 @@ const CreatePlan = (props) => {
         if (formData.exercise && formData.sets && formData.reps && formData.weight && formData.rest_time && formData.suggested_order) {
             setWorkoutPlan({
                 //need to add suggested order text box 
+                user_id: workoutPlan.user_id,
                 workout_name: workoutPlan.workout_name,
                 workout_description: workoutPlan.workout_description,
                 records: [...workoutPlan.records, {
                     exercise_id: formData.exercise_id,
                     exercise: formData.exercise,
-                    sets: formData.sets,
-                    reps: formData.reps,
-                    weight: formData.weight,
+                    sets: Number(formData.sets),
+                    reps: Number(formData.reps),
+                    weight: Number(formData.weight),
                     rest_time: formData.rest_time,
-                    suggested_order: formData.suggested_order,
+                    suggested_order: Number(formData.suggested_order),
                     id: Date.now()
                 }],
             });
@@ -82,19 +83,26 @@ const CreatePlan = (props) => {
     }
 
     const handleInputWorkoutName = (event) => {
+
         setWorkoutPlan({
             ...workoutPlan,
             [event.target.name]: event.target.value
         })
+
     }
+
+
 
     // 4. onSubmit form to post new workoutPlan to api
     const handleOnSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation()
+
+        console.log(workoutPlan);
+
         //axiosWithAuth to post new/add new workout
         axiosWithAuth()
-            .post('/', workoutPlan)
+            .post('/workouts/create', workoutPlan)
             .then(response => {
                 console.log(response)
                 setFormData(response)
