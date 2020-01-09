@@ -1,41 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 
+import { NavigationWrapper, LogoutButton, LinkStyle } from '../StyledComponents/StyledComponents';
 
-const NavigationWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 2% 0;
-    background: #00aced;
-
-    .selected{
-        text-decoration: underline;
-    }
-`
-
-const LogoutButton = styled.button`
-    width: 10%;
-    height: 40px;
-    margin: auto;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    background: #01acee;
-    color: #FFF;
-    margin-left: 5%;
-    border: 2px solid #FFF;
-    
-`
-
-const LinkStyle = styled(NavLink).attrs(() => ({ activeClassName: 'selected' }))`
-    text-decoration: none;
-    color: #FFF;
-    padding:0 3%;
-    font-size: 1.4rem;
-    font-weight: bold;
-`
 
 const Navigation = (props) => {
 
