@@ -66,8 +66,9 @@ const CreatePlan = (props) => {
 
     //deletePlan --> need to remove a exercise from the page (need an ID)
     const handleDeleteExercise = (event, id) => {
+        event.preventDefault();
         event.stopPropagation()
-        const filteredExercise = workoutPlan.records.filter(item => item.id !== id)
+        const filteredExercise = workoutPlan.records.filter(item => item.workout_id !== id)
         setWorkoutPlan({
             ...workoutPlan,
             records: filteredExercise
@@ -88,7 +89,6 @@ const CreatePlan = (props) => {
             ...workoutPlan,
             [event.target.name]: event.target.value
         })
-
     }
 
 
@@ -343,7 +343,7 @@ const CreatePlan = (props) => {
                                         <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weight} lbs</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.rest_time} minutes</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.suggested_order}</CardTextStyle>
-                                        <DeleteButton onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
+                                        <DeleteButton onClick={event => handleDeleteExercise(event, exercise.workout_id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
                             </div>
