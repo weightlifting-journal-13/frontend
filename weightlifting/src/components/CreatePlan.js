@@ -20,7 +20,8 @@ const CreatePlan = (props) => {
         reps: 0,
         weight: 0,
         rest_time: '',
-        suggested_order: 0
+        suggested_order: 0,
+        workout_id: 0
     })
 
     //use Object.values to convert to array so we can map it
@@ -50,7 +51,7 @@ const CreatePlan = (props) => {
                     weight: Number(formData.weight),
                     rest_time: formData.rest_time,
                     suggested_order: Number(formData.suggested_order),
-                    id: Date.now()
+                    workout_id: Date.now()
                 }],
             });
             setFormData({
@@ -283,7 +284,6 @@ const CreatePlan = (props) => {
                                 placeholder='Number of sets'
                                 value={formData.sets}
                                 onChange={handleInputChanges}
-                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -294,7 +294,6 @@ const CreatePlan = (props) => {
                                 placeholder='Number of reps'
                                 value={formData.reps}
                                 onChange={handleInputChanges}
-                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -305,7 +304,6 @@ const CreatePlan = (props) => {
                                 placeholder='lbs lifted'
                                 value={formData.weight}
                                 onChange={handleInputChanges}
-                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -316,7 +314,6 @@ const CreatePlan = (props) => {
                                 placeholder='0'
                                 value={formData.rest_time}
                                 onChange={handleInputChanges}
-                                required
                             />
                         </FormContainer>
                         <FormContainer>
@@ -327,7 +324,6 @@ const CreatePlan = (props) => {
                                 placeholder='Order of exercises'
                                 value={formData.suggested_order}
                                 onChange={handleInputChanges}
-                                required
                             />
                         </FormContainer>
                         <FormContainer>
