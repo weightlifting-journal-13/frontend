@@ -6,7 +6,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={props => {
-                console.log("PROPS ARE: ", props);
                 if (localStorage.getItem('token')) {
                     return <Component {...props} />
                 } else if (props.location.pathname !== "/Registration") {
