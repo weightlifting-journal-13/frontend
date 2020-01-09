@@ -36,6 +36,12 @@ const Login = (props) => {
     const logInValidation = () => {
         let logInPwValid = false;
         let logInUnValid = false;
+        credentials.password.length >= "3"
+            ? (logInPwValid = true)
+            : cogoToast.warn("Sorry, that password is a little short!", {
+                position: "bottom-right"
+            });
+
         const emailRegEx = /\S+@\S+\.\S+/;
         emailRegEx.test(credentials.username.toLowerCase()) === true
             ? (logInUnValid = true)
@@ -44,6 +50,12 @@ const Login = (props) => {
             });
         return (logInPwValid === true && logInUnValid === true) ? true : false;
     };
+
+    const handleRedirectRegistration = (event) => {
+        event.preventDefault();
+
+        props.history.push('/Registration')
+    }
 
     //handleLoginSubmit
     //use axiosWithAuth --> all done inside handleLoginSubmit
@@ -102,6 +114,8 @@ const Login = (props) => {
                         {/* Login */}
                         {isLoading ? 'Logging in...' : 'Log in'}
                     </ButtonStyle>
+                    <h5>Not a member, please sign up</h5>
+                    <button onClick={handleRedirectRegistration} >Signup</button>
                 </form>
             </LoginContainer>
             <LoginImageWrapper>

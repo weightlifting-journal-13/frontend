@@ -5,7 +5,7 @@ import { FormWrapper, FormContainer, TextInput, SelectInput, WorkoutPlanInput, B
 
 const CreatePlan = (props) => {
     const [workoutPlan, setWorkoutPlan] = useState({
-        user_id: localStorage.getItem("user_id"),
+        user_id: Number(localStorage.getItem("user_id")),
         workout_name: '',
         workout_description: '',
         records: []
@@ -28,7 +28,7 @@ const CreatePlan = (props) => {
     const result = Object.values(workoutPlan)
     // console.log(result)
     // console.log(formData, 'FormData Todd is here')
-    console.log("WORKOUT PLAN IS NOW ", workoutPlan);
+    // console.log("WORKOUT PLAN IS NOW ", workoutPlan);
 
     const addToPlan = (event) => {
         event.persist();
@@ -51,7 +51,7 @@ const CreatePlan = (props) => {
                     weight: Number(formData.weight),
                     rest_time: formData.rest_time,
                     suggested_order: Number(formData.suggested_order),
-                    workout_id: Date.now()
+                    id: Date.now()
                 }],
             });
             setFormData({
@@ -69,8 +69,8 @@ const CreatePlan = (props) => {
     const handleDeleteExercise = (event, id) => {
         event.preventDefault();
         event.stopPropagation()
-        event.preventDefault()
-        const filteredExercise = workoutPlan.records.filter(item => item.workout_id !== id)
+
+        const filteredExercise = workoutPlan.records.filter(item => item.id !== id)
         setWorkoutPlan({
             ...workoutPlan,
             records: filteredExercise
@@ -100,12 +100,26 @@ const CreatePlan = (props) => {
         e.preventDefault();
         e.stopPropagation()
 
-        console.log(workoutPlan);
-
         //axiosWithAuth to post new/add new workout
         if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
+            const modifiedRecordsArray = workoutPlan.records.map(eachObj => {
+                return {
+                    exercise_id: eachObj.exercise_id,
+                    rest_time: eachObj.rest_time,
+                    sets: eachObj.sets,
+                    reps: eachObj.reps,
+                    weight: eachObj.weight,
+                    suggested_order: eachObj.suggested_order
+                }
+            })
+
+            const objToSubmit = {
+                ...workoutPlan,
+                records: modifiedRecordsArray
+            }
+            console.log(objToSubmit);
             axiosWithAuth()
-                .post('/workouts/create', workoutPlan)
+                .post('/workouts/create', objToSubmit)
                 .then(response => {
                     console.log("WORKOUT CREATE RESPONSE: ", response);
                     setFormData(response)
@@ -348,7 +362,7 @@ const CreatePlan = (props) => {
                                         <CardTextStyle><CardTextSpan>Weight:</CardTextSpan> {exercise.weight} lbs</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Rest Time:</CardTextSpan> {exercise.rest_time} minutes</CardTextStyle>
                                         <CardTextStyle><CardTextSpan>Order:</CardTextSpan> {exercise.suggested_order}</CardTextStyle>
-                                        <DeleteButton type="button" onClick={event => handleDeleteExercise(event, exercise.workout_id)} >Delete</DeleteButton>
+                                        <DeleteButton type="button" onClick={event => handleDeleteExercise(event, exercise.id)} >Delete</DeleteButton>
                                     </CardContainer>
                                 </CardWrapper>
                             </div>
