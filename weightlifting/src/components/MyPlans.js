@@ -38,6 +38,10 @@ const MyPlans = (props) => {
 
     return (
         <div>
+
+
+
+
             <h1>My plans --> show newly create plans here</h1>
             <button onClick={editWorkoutPlan}>Edit plan</button>
             <button onClick={deleteWorkoutPlan} >Delete plan</button>
