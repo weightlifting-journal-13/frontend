@@ -27,7 +27,7 @@ const EditWorkoutPlan = (props) => {
     //gets WorkoutPlan and all exercises associated to specific plan by dynamic ID
     /*useEffect(() => {
         axiosWithAuth()
-            .get(`/users/workout/${props.match.params.id}`) //need correct endpoint??
+            .get(`/workouts/all_workouts`)
             .then(response => {
                 console.log('EDIT RESPONSE IS HERE:'response)
 
@@ -37,7 +37,7 @@ const EditWorkoutPlan = (props) => {
             .catch(error => {
                 console.log('Sorry, no workout id returned', error)
             })
-
+.
     }, [props.match.params.id]) */
 
     //gets exercise list
@@ -246,10 +246,10 @@ const EditWorkoutPlan = (props) => {
                             {/* Add select options here for workout list */}
                             {/* /workouts/exercises */}
                             <SelectInput name='exercise_id' onChange={handleInputChanges}>
-                                {prefabOptions.map((exerciseOption) => (
+                                {prefabOptions.map((exerciseOption, index) => (
 
 
-                                    <option name={`${exerciseOption.name}`} value={exerciseOption.exercise_id}>{exerciseOption.name}</option>
+                                    <option key={index} name={`${exerciseOption.name}`} value={exerciseOption.exercise_id}>{exerciseOption.name}</option>
                                 ))};
                             </SelectInput>
 

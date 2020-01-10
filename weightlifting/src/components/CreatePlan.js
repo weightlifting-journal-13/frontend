@@ -140,7 +140,7 @@ const CreatePlan = (props) => {
         if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
             const modifiedRecordsArray = workoutPlan.records.map(eachObj => {
                 return {
-                    exercise_id: eachObj.exercise_id,
+                    exercise_id: Number(eachObj.exercise_id),
                     rest_time: eachObj.rest_time,
                     sets: eachObj.sets,
                     reps: eachObj.reps,
@@ -228,10 +228,10 @@ const CreatePlan = (props) => {
                             {/* Add select options here for workout list */}
                             {/* /workouts/exercises */}
                             <SelectInput name='exercise_id' onChange={handleInputChanges}>
-                                {prefabOptions.map((exerciseOption) => (
+                                {prefabOptions.map((exerciseOption, index) => (
 
 
-                                    <option name={`${exerciseOption.name}`} value={exerciseOption.exercise_id}>{exerciseOption.name}</option>
+                                    <option key={index} name={`${exerciseOption.name}`} value={exerciseOption.exercise_id}>{exerciseOption.name}</option>
                                 ))};
                             </SelectInput>
 
