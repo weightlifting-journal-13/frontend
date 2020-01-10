@@ -34,8 +34,8 @@ const MyPlans = (props) => {
         //     .delete(`/workouts/${id}`) //check for correct api endpoint -->
         //         console.log(response)
 
-    // const deleteWorkoutPlan = (event) => {
-    //     event.preventDefault();
+        // const deleteWorkoutPlan = (event) => {
+        //     event.preventDefault();
 
 
         //         props.history.push('/Dashboard')
@@ -48,23 +48,14 @@ const MyPlans = (props) => {
     return (
         <div>
 
-<<<<<<< HEAD
-
-
-
-            <h1>My plans --> show newly create plans here</h1>
-            <button onClick={editWorkoutPlan}>Edit plan</button>
-            <button onClick={deleteWorkoutPlan} >Delete plan</button>
-=======
             <h1> Your Created Plans</h1>
             {bodyPart.map((obj, index) => (
-              <MyPlanCard 
-                key={index}
-                bodypart={obj.bodypart}
-              />
+                <MyPlanCard
+                    key={index}
+                    bodypart={obj.bodypart}
+                />
             ))}
 
->>>>>>> eb019df025f5796b30934a794736b326cb7888af
         </div>
     );
 
