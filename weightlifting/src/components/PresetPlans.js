@@ -8,7 +8,6 @@ const PresetPlans = () => {
   const [bodyPart, setBodyPart] = useState(data)
 
   useEffect(() => {
-    const getAllWorkouts = () => {
       axiosWithAuth()
         .get('/workouts/all_workouts', {user_id: localStorage.getItem("user_id")})
         .then(res => {
@@ -18,35 +17,17 @@ const PresetPlans = () => {
         .catch(error => {
           console.log('results not found', error)
         });
-    }
-
-    getAllWorkouts();
   }, [])
 
     
-    return ( 
-
-      //Card should consist of workout plan name and workoutdescription
-      //but that state is declared in CreatePlan
-
-      // const [workoutPlan, setWorkoutPlan] = useState({
-      //   workoutplan: '',
-      //   workoutdescription: '',
-
+    return (
       <div>
-        {/* {bodyPart.map((obj, index) => (
+        {bodyPart.map((obj, index) => (
           <PlanCard 
             key={index}
             bodypart={obj.bodypart}
           />
-        ))} */}
-
-        {/* {mapDataObject(bodyPart, (key, value) => 
-          <PlanCard 
-            part={key}
-            bodypart={value.bodypart}
-          />
-        )} */}
+        ))}
         </div>
      );
 }
