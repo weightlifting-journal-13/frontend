@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "weightlifting",
+    "builds": [
+        {
+            "src": "weightlifting/package.json",
+            "use": "@now/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "weightlifting/$1"
+        }
+    ]
+}
