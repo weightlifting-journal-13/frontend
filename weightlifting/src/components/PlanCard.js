@@ -4,10 +4,9 @@ import { Card } from '../StyledComponents/StyledComponents';
 const PlanCard = (props) => {
   return (
     <Card>
-      <h2 key={props.id}>{props.bodypart} day </h2>
+      <h2>{props.bodypart} </h2>
     </Card>
   )
-
 }
 
 export default PlanCard;

@@ -11,7 +11,7 @@ const MyPlanCard = (props) => {
   const editWorkoutPlan = (event) => {
     event.preventDefault();
 
-    props.history.push(`/EditPlan/id`)
+    props.history.push(`/EditPlan/id`);
   }
 
   //This functionality will go in the 'MyPlans" card to delete an entire Workout Plan

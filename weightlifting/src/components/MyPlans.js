@@ -9,7 +9,6 @@ import { store } from "../reducers/WorkoutReducer";
 
 const MyPlans = (props) => {
 
-
     const [bodyPart, setBodyPart] = useState(data)
 
     const globalState = useContext(store).state;
@@ -21,7 +20,6 @@ const MyPlans = (props) => {
 
     return (
         <div>
-
             <h1> Your Created Plans</h1>
             {bodyPart.map((obj, index) => (
                 <MyPlanCard
@@ -30,11 +28,8 @@ const MyPlans = (props) => {
                     history={props.history}
                 />
             ))}
-
         </div>
     );
-
-
 }
 
 export default MyPlans;

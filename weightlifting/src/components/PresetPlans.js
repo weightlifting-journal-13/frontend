@@ -7,20 +7,18 @@ const PresetPlans = () => {
 
   const [bodyPart, setBodyPart] = useState(data)
 
+  const [workouts, setWorkouts] = useState(data)
+  
   useEffect(() => {
-    const getAllWorkouts = () => {
       axiosWithAuth()
-        .get('/workouts/all_workouts', {user_id: localStorage.getItem("user_id")})
+        .get('/workouts/exercises', {user_id: localStorage.getItem("user_id")})
         .then(res => {
           console.log(res)
-          setBodyPart(res);
+          setWorkouts(res.data);
         })
         .catch(error => {
           console.log('results not found', error)
         });
-    }
-
-    getAllWorkouts();
   }, [])
 
     
@@ -34,20 +32,13 @@ const PresetPlans = () => {
       //   workoutdescription: '',
 
       <div>
-        {/* {bodyPart.map((obj, index) => (
+        {workouts.map((exercise, index) => (
           <PlanCard 
             key={index}
-            bodypart={obj.bodypart}
+            bodypart={exercise.target_region}
           />
-        ))} */}
-
-        {/* {mapDataObject(bodyPart, (key, value) => 
-          <PlanCard 
-            part={key}
-            bodypart={value.bodypart}
-          />
-        )} */}
-        </div>
+        ))}
+      </div>
      );
 }
  
