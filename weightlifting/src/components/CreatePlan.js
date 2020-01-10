@@ -8,7 +8,6 @@ import { store } from "../reducers/WorkoutReducer";
 const CreatePlan = (props) => {
     const { dispatch } = useContext(store);
 
-
     const [workoutPlan, setWorkoutPlan] = useState({
         user_id: Number(localStorage.getItem("user_id")),
         workout_name: '',
