@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { LoginWrapper, LoginContainer, LoginImage, LoginImageWrapper, LoginTextInput, ButtonStyle } from '../StyledComponents/StyledComponents';
 import cogoToast from "cogo-toast";
 // import * as Yup from 'yup';
 
@@ -101,29 +102,34 @@ const Registration = props => {
   //after adding regex, console shows error response from back end. prior to regex cogo toast messages were appearing
 
   return (
-    <div>
-      <h1>Registration Component</h1>
-      <h3>Please sign up</h3>
-      <form onSubmit={handleOnSubmitRegistration}>
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          value={registrationCredentials.username}
-          onChange={handleInputChanges}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={registrationCredentials.password}
-          onChange={handleInputChanges}
-          required
-        />
-        <button type="submit">{isLoading ? "Signing in..." : "Sign up"}</button>
-      </form>
-    </div>
+    <LoginWrapper>
+      <LoginContainer>
+        <h1>Please register your account!</h1>
+        <h3>Complete the required information</h3>
+        <form onSubmit={handleOnSubmitRegistration}>
+          <LoginTextInput
+            type="text"
+            name="username"
+            placeholder="username"
+            value={registrationCredentials.username}
+            onChange={handleInputChanges}
+            required
+          />
+          <LoginTextInput
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={registrationCredentials.password}
+            onChange={handleInputChanges}
+            required
+          />
+          <ButtonStyle type="submit">{isLoading ? "Registering account..." : "Sign up"}</ButtonStyle>
+        </form>
+      </LoginContainer>
+      <LoginImageWrapper>
+        <LoginImage src={'https://images.unsplash.com/photo-1530021356476-0a6375ffe73b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'} alt='gym weights workout bar tires' />
+      </LoginImageWrapper>
+    </LoginWrapper>
   );
 };
 
