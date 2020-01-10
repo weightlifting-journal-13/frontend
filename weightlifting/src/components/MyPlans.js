@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from './Navigation';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { LogoutButton } from '../StyledComponents/StyledComponents';
 import MyPlanCard from './MyPlanCard';
 import { data } from '../data';
@@ -17,20 +18,36 @@ const MyPlans = (props) => {
 
     console.log("MY PLANS ARE: ", globalState);
 
+    // --> redirects to EditWorkoutPlan
     const editWorkoutPlan = (event) => {
         event.preventDefault();
 
         props.history.push(`/EditPlan/id`)
     }
 
+    //This functionality will go in the 'MyPlans" card to delete an entire Workout Plan
+    const deleteWorkoutPlan = (event) => {
+        event.preventDefault();
+
+        props.history.push('/Dashboard') //will remove this ,just for redirect to make sure redirect works
+        // axiosWithAuth()
+        //     .delete(`/workouts/${id}`) //check for correct api endpoint -->
+        //         console.log(response)
 
     // const deleteWorkoutPlan = (event) => {
     //     event.preventDefault();
 
-    // }
+
+        //         props.history.push('/Dashboard')
+        //     })
+        //     .catch(error => {
+        //         console.log('Sorry, your workout not deleted')
+        //     })
+    }
 
     return (
         <div>
+
             <h1> Your Created Plans</h1>
             {bodyPart.map((obj, index) => (
               <MyPlanCard 
