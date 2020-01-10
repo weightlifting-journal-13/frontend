@@ -158,7 +158,7 @@ const EditWorkoutPlan = (props) => {
         if (workoutPlan.user_id && workoutPlan.workout_name && workoutPlan.workout_description && workoutPlan.records) {
             const modifiedRecordsArray = workoutPlan.records.map(eachObj => {
                 return {
-                    exercise_id: eachObj.exercise_id,
+                    exercise_id: Number(eachObj.exercise_id),
                     rest_time: eachObj.rest_time,
                     sets: eachObj.sets,
                     reps: eachObj.reps,
