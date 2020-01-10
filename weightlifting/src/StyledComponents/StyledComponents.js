@@ -156,7 +156,6 @@ export const ImageWrapper = styled.img`
 `
 
 export const ButtonWrapper = styled.div`
-   border: 1px solid red;
    display: flex;
    margin-top: 2%;
    

@@ -11,7 +11,7 @@ const Card = styled.div`
 `
 
 const PlanCard = (props) => {
-  return(
+  return (
     <Card>
       <h2 key={props.id}>{props.bodypart} day </h2>
     </Card>
