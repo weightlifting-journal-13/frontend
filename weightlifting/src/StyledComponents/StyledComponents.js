@@ -259,3 +259,18 @@ export const Card = styled.div`
   border-radius: 15px;
   box-shadow: 5px 5px 30px -10px;
 `
+
+export const SearchBar = styled.input`
+    color: black;
+    width: 25%;
+    font-size: 2rem;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 0;
+    border: 2px solid lightGrey;
+    border-radius: 15px;
+    background-color: transparent;
+
+`

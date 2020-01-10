@@ -9,12 +9,6 @@ const MyPlans = (props) => {
 
     const [bodyPart, setBodyPart] = useState(data)
 
-    const editWorkoutPlan = (event) => {
-        event.preventDefault();
-
-        props.history.push(`/EditPlan/id`)
-    }
-
     return (
         <div>
             <h1> Your Created Plans</h1>
